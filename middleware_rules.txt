@@ -1,0 +1,244 @@
+# ==============================================================================
+# CHHAAPA.IN - MIDDLEWARE RULES & ROUTE PROTECTION CONFIGURATION (PRODUCTION)
+# Target Platform: Gen Z-targeted Indian Printing E-Commerce Middleman Website
+# File Version: 1.0.0
+# Last Updated: 2026-07-02
+# ==============================================================================
+
+# ------------------------------------------------------------------------------
+# SECTION 1: ROUTE PROTECTION MATRIX
+# ------------------------------------------------------------------------------
+# Rules define authorization layers, required scopes, token types, and fallback behavior.
+# Token Authentication: HS256/RS256 JWT in HTTP-Only Cookie (__Host-Chhaapa-Auth)
+# or Authorization header Bearer token (API Clients).
+
+# [Public Routes]
+# Accessibility: Guests and Authenticated Users (No restriction)
+ROUTE: /
+  AUTH_REQUIRED: false
+  ALLOWED_ROLES: [*]
+  ACTION_ON_UNAUTH: ALLOW
+
+ROUTE: /products
+  AUTH_REQUIRED: false
+  ALLOWED_ROLES: [*]
+  ACTION_ON_UNAUTH: ALLOW
+
+ROUTE: /customize
+  AUTH_REQUIRED: false
+  ALLOWED_ROLES: [*]
+  ACTION_ON_UNAUTH: ALLOW
+
+ROUTE: /api/products/*
+  AUTH_REQUIRED: false
+  ALLOWED_ROLES: [*]
+  ACTION_ON_UNAUTH: ALLOW
+
+# [Authenticated/Private Customer Routes]
+# Accessibility: Logged-in Customers, Partners, and Admins
+ROUTE: /profile/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [customer, partner, admin]
+  ACTION_ON_UNAUTH: REDIRECT /login?redirect_to=%current_path%
+
+ROUTE: /orders/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [customer, partner, admin]
+  ACTION_ON_UNAUTH: REDIRECT /login?redirect_to=%current_path%
+
+ROUTE: /checkout
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [customer, partner, admin]
+  ACTION_ON_UNAUTH: REDIRECT /cart
+
+ROUTE: /api/orders/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [customer, partner, admin]
+  ACTION_ON_UNAUTH: HTTP_STATUS 401 {"error": "Authentication required. Please log in."}
+
+ROUTE: /api/upload
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [customer, partner, admin]
+  ACTION_ON_UNAUTH: HTTP_STATUS 401 {"error": "Authentication required for image upload."}
+
+# [Partner/Print-Shop Routes]
+# Accessibility: Partner Print-Shops and Admins (For fulfillment, routing, and inventory)
+ROUTE: /partner/dashboard
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [partner, admin]
+  ACTION_ON_UNAUTH: REDIRECT /partner/login
+  ACTION_ON_FORBIDDEN: REDIRECT /unauthorized
+
+ROUTE: /partner/orders/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [partner, admin]
+  ACTION_ON_UNAUTH: REDIRECT /partner/login
+  ACTION_ON_FORBIDDEN: REDIRECT /unauthorized
+
+ROUTE: /api/partner/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [partner, admin]
+  ACTION_ON_UNAUTH: HTTP_STATUS 401 {"error": "Partner authentication required."}
+  ACTION_ON_FORBIDDEN: HTTP_STATUS 403 {"error": "Access forbidden. Partner role required."}
+
+# [Admin-Only Routes]
+# Accessibility: Platform Administrators
+ROUTE: /admin/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [admin]
+  ACTION_ON_UNAUTH: REDIRECT /admin/login
+  ACTION_ON_FORBIDDEN: HTTP_STATUS 403 {"error": "Access denied. Administrator privileges required."}
+
+ROUTE: /api/admin/*
+  AUTH_REQUIRED: true
+  ALLOWED_ROLES: [admin]
+  ACTION_ON_UNAUTH: HTTP_STATUS 401 {"error": "Admin authentication required."}
+  ACTION_ON_FORBIDDEN: HTTP_STATUS 403 {"error": "Access denied. Admin role required."}
+
+
+# ------------------------------------------------------------------------------
+# SECTION 2: CORS (CROSS-ORIGIN RESOURCE SHARING) CONFIGURATION
+# ------------------------------------------------------------------------------
+# Tailored for separated frontend, partner dashboard, admin portal, and APIs.
+
+CORS_POLICY:
+  ALLOWED_ORIGINS:
+    - https://chhaapa.in
+    - https://www.chhaapa.in
+    - https://partner.chhaapa.in
+    - https://admin.chhaapa.in
+  ALLOWED_METHODS:
+    - GET
+    - POST
+    - PUT
+    - PATCH
+    - DELETE
+    - OPTIONS
+  ALLOWED_HEADERS:
+    - Content-Type
+    - Authorization
+    - X-Requested-With
+    - X-CSRF-Token
+    - X-Device-Id
+    - X-Platform
+  EXPOSED_HEADERS:
+    - Content-Disposition
+    - Content-Length
+    - X-RateLimit-Limit
+    - X-RateLimit-Remaining
+    - X-RateLimit-Reset
+  ALLOW_CREDENTIALS: true
+  MAX_AGE: 86400
+  PREFLIGHT_CONTINUE: false
+  OPTIONS_SUCCESS_STATUS: 204
+
+
+# ------------------------------------------------------------------------------
+# SECTION 3: HTTP SECURITY HEADERS
+# ------------------------------------------------------------------------------
+# Standard security hardening for protection against XSS, clickjacking, sniff attacks, 
+# and information disclosure.
+
+# 3.1 Content-Security-Policy (CSP)
+# Restricts resource loading to trusted domains (self, fonts, images, Razorpay payment).
+# - script-src allows self, Razorpay checkout scripts, and cloudflare web analytics.
+# - img-src allows self, data URIs for canvas customizers, and AWS S3 storage.
+# - frame-src allows Razorpay iframe overlays for card/UPI payments.
+HEADER: Content-Security-Policy
+  VALUE: "default-src 'self'; script-src 'self' https://checkout.razorpay.com https://static.cloudflareinsights.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: blob: https://chhaapa-prod-assets.s3.ap-south-1.amazonaws.com https://checkout.razorpay.com; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://api.razorpay.com https://api.chhaapa.in https://amplitude.com; frame-src 'self' https://api.razorpay.com https://checkout.razorpay.com; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests;"
+
+# 3.2 Strict-Transport-Security (HSTS)
+# Enforce HTTPS-only connection for 2 years (63072000 seconds), including subdomains, preloaded.
+HEADER: Strict-Transport-Security
+  VALUE: "max-age=63072000; includeSubDomains; preload"
+
+# 3.3 X-Content-Type-Options
+# Stop browsers from MIME-sniffing away from the declared Content-Type.
+HEADER: X-Content-Type-Options
+  VALUE: "nosniff"
+
+# 3.4 X-Frame-Options
+# Prevent clickjacking attacks by blocking iframe embedding of the site on third-party domains.
+HEADER: X-Frame-Options
+  VALUE: "DENY"
+
+# 3.5 Referrer-Policy
+# Send origin, path, and query string when performing a same-origin request, but only 
+# send the origin for cross-origin requests.
+HEADER: Referrer-Policy
+  VALUE: "strict-origin-when-cross-origin"
+
+# 3.6 Permissions-Policy
+# Disable unused hardware access for users, allow camera only for customizer upload.
+HEADER: Permissions-Policy
+  VALUE: "camera=(self), microphone=(), geolocation=(), payment=(self 'https://checkout.razorpay.com'), interest-cohort=()"
+
+# 3.7 X-XSS-Protection
+# Disable browser-managed XSS filters (often causing vulnerabilities) in favor of strict CSP.
+HEADER: X-XSS-Protection
+  VALUE: "0"
+
+
+# ------------------------------------------------------------------------------
+# SECTION 4: RATE LIMITING CONFIGURATION
+# ------------------------------------------------------------------------------
+# Limits to prevent brute-forcing, scraping, API denial-of-service, and resource exhaustion.
+# Client identification is computed using the 'X-Forwarded-For' IP behind Cloudflare or 
+# CDN, combined with User ID (if logged in).
+
+# 4.1 Global Rate Limit (Fallback)
+# Applied to all general routes not overridden below.
+RATE_LIMIT: GLOBAL
+  WINDOW: 60 seconds
+  MAX_REQUESTS: 100
+  STRATEGY: token-bucket
+  RESPONSE_CODE: 429
+  RESPONSE_JSON: {"error": "Too many requests. Chill out and try again in a bit."}
+
+# 4.2 OTP / Auth Requests (Mobile & Email OTP)
+# Crucial for Gen Z mobile-first OTP logins to prevent SMS gateway financial drain.
+RATE_LIMIT: /api/auth/send-otp
+  WINDOW: 300 seconds (5 minutes)
+  MAX_REQUESTS: 3
+  STRATEGY: sliding-window
+  RESPONSE_CODE: 429
+  RESPONSE_JSON: {"error": "OTP limit exceeded. You can request up to 3 OTPs every 5 minutes."}
+
+# 4.3 Custom Image / Asset Uploads
+# Protects cloud storage limits (e.g., S3) and processing queues from payload exhaustion.
+RATE_LIMIT: /api/upload
+  WINDOW: 60 seconds
+  MAX_REQUESTS: 10
+  STRATEGY: sliding-window
+  RESPONSE_CODE: 429
+  RESPONSE_JSON: {"error": "Upload rate limit exceeded. Max 10 custom file uploads per minute."}
+
+# 4.4 Search and Product Catalog API
+# Prevents competitors/web scrapers from harvesting product catalogs and pricing models.
+RATE_LIMIT: /api/products/*
+  WINDOW: 60 seconds
+  MAX_REQUESTS: 60
+  STRATEGY: token-bucket
+  RESPONSE_CODE: 429
+  RESPONSE_JSON: {"error": "Search limit exceeded. Slow down your browsing query."}
+
+# 4.5 Checkout / Order Creation API
+# Prevents carding, order-spamming, inventory-locking, and payment gateway spamming.
+RATE_LIMIT: /api/orders/checkout
+  WINDOW: 60 seconds
+  MAX_REQUESTS: 5
+  STRATEGY: sliding-window
+  RESPONSE_CODE: 429
+  RESPONSE_JSON: {"error": "Order request threshold met. Please wait before attempting checkout again."}
+
+# 4.6 Payment Webhooks (Razorpay)
+# Whitelists Razorpay API source IPs and bypasses traditional client rate limits to 
+# ensure fulfillment callbacks are never blocked.
+WHITELIST: /api/payments/webhook
+  ALLOWED_IPS:
+    - 52.66.199.198
+    - 52.66.199.199
+    - 52.66.199.200
+    - 52.66.199.201
+  BYPASS_RATE_LIMITS: true
+  REQUIRE_SIGNATURE_HEADER: X-Razorpay-Signature

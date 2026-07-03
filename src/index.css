@@ -1,0 +1,223 @@
+@import "tailwindcss";
+
+@theme {
+  /* Soft Pastel Color Palette */
+  --color-bhangra-pink-50: #FFF0F5;
+  --color-bhangra-pink-100: #FFE3EC;
+  --color-bhangra-pink-200: #FFC4D6;
+  --color-bhangra-pink-300: #FFA6C9;
+  --color-bhangra-pink-400: #FF87B2;
+  --color-bhangra-pink-500: #FFA6C9; /* Soft Pastel Pink */
+  --color-bhangra-pink-600: #E68FA5;
+  --color-bhangra-pink-700: #C26B82;
+  --color-bhangra-pink-800: #9E4D61;
+  --color-bhangra-pink-900: #7A3546;
+  --color-bhangra-pink-950: #4A1723;
+  --color-bhangra-pink: #FFA6C9;
+
+  --color-masala-orange-50: #FFF6F0;
+  --color-masala-orange-100: #FFE6D6;
+  --color-masala-orange-200: #FFCCB0;
+  --color-masala-orange-300: #FFB899; /* Soft Pastel Apricot */
+  --color-masala-orange-400: #FFA37A;
+  --color-masala-orange-500: #FFB899;
+  --color-masala-orange-600: #E69B7C;
+  --color-masala-orange-700: #C2795C;
+  --color-masala-orange-800: #9E5B41;
+  --color-masala-orange-900: #7A402D;
+  --color-masala-orange-950: #4A2013;
+  --color-masala-orange: #FFB899;
+
+  --color-desi-lime-50: #F4FDF5;
+  --color-desi-lime-100: #E3FAE6;
+  --color-desi-lime-200: #C7F9CC; /* Soft Pastel Mint Green */
+  --color-desi-lime-300: #A8F0B4;
+  --color-desi-lime-400: #8CE89E;
+  --color-desi-lime-500: #C7F9CC;
+  --color-desi-lime-600: #9ED4A3;
+  --color-desi-lime-700: #7FB284;
+  --color-desi-lime-800: #629166;
+  --color-desi-lime-900: #496F4D;
+  --color-desi-lime-950: #29442C;
+  --color-desi-lime: #C7F9CC;
+
+  --color-vibe-purple-50: #F8F5FF;
+  --color-vibe-purple-100: #ECDEFF;
+  --color-vibe-purple-200: #D6C7FF; /* Soft Pastel Lavender */
+  --color-vibe-purple-300: #BEAAFF;
+  --color-vibe-purple-400: #A58BFF;
+  --color-vibe-purple-500: #D6C7FF;
+  --color-vibe-purple-600: #B2A2E6;
+  --color-vibe-purple-700: #9181C2;
+  --color-vibe-purple-800: #70629E;
+  --color-vibe-purple-900: #52447A;
+  --color-vibe-purple-950: #30244D;
+  --color-vibe-purple: #D6C7FF;
+
+  --color-jugaad-black-50: #F8F9FA;
+  --color-jugaad-black-100: #EAECEE;
+  --color-jugaad-black-200: #D2D6DC;
+  --color-jugaad-black-300: #A9B0BC;
+  --color-jugaad-black-400: #7D8696;
+  --color-jugaad-black-500: #555E70;
+  --color-jugaad-black-600: #3E4657;
+  --color-jugaad-black-700: #2C3242;
+  --color-jugaad-black-800: #1C202C; /* Soft Slate Charcoal */
+  --color-jugaad-black-900: #141722; /* Soft Slate Dark */
+  --color-jugaad-black-950: #0E0F16; /* Soft Deep Dark */
+  --color-jugaad-black: #0E0F16;
+
+  --color-chai-gold-50: #FFFDF0;
+  --color-chai-gold-100: #FAF5D4;
+  --color-chai-gold-200: #FCEB92; /* Soft Pastel Lemon Yellow */
+  --color-chai-gold-300: #ECD673;
+  --color-chai-gold-400: #D0B858;
+  --color-chai-gold-500: #FCEB92;
+  --color-chai-gold-600: #DBC87F;
+  --color-chai-gold-700: #B8A563;
+  --color-chai-gold-800: #96834A;
+  --color-chai-gold-900: #756333;
+  --color-chai-gold-950: #4A3C1B;
+  --color-chai-gold: #FCEB92;
+
+  --color-monsoon-blue-50: #F2FAFF;
+  --color-monsoon-blue-100: #DDECFF;
+  --color-monsoon-blue-200: #B9E2FC; /* Soft Pastel Baby Blue */
+  --color-monsoon-blue-300: #92CDFA;
+  --color-monsoon-blue-400: #6EB2F0;
+  --color-monsoon-blue-500: #B9E2FC;
+  --color-monsoon-blue-600: #9CC5E6;
+  --color-monsoon-blue-700: #7EA7C2;
+  --color-monsoon-blue-800: #6289A1;
+  --color-monsoon-blue-900: #496C7F;
+  --color-monsoon-blue-950: #294552;
+  --color-monsoon-blue: #B9E2FC;
+
+  --color-kulfi-white-50: #FFFFFF;
+  --color-kulfi-white-100: #FAF8F5; /* Warm Soft Vanilla Cream */
+  --color-kulfi-white-200: #F3EFE7;
+  --color-kulfi-white-300: #E6DEC9;
+  --color-kulfi-white-400: #D3CAB5;
+  --color-kulfi-white-500: #B8AE98;
+  --color-kulfi-white-600: #968D79;
+  --color-kulfi-white-700: #756D5B;
+  --color-kulfi-white-800: #555042;
+  --color-kulfi-white-900: #3C382E;
+  --color-kulfi-white-950: #26241D;
+  --color-kulfi-white: #FAF8F5;
+
+  --color-bazaar-red-50: #FFF5F5;
+  --color-bazaar-red-100: #FFE3E3;
+  --color-bazaar-red-200: #FFC9C9; /* Soft Pastel Coral */
+  --color-bazaar-red-300: #FFA8A8;
+  --color-bazaar-red-400: #FF8787;
+  --color-bazaar-red-500: #FFC9C9;
+  --color-bazaar-red-600: #E6B0B0;
+  --color-bazaar-red-700: #C29191;
+  --color-bazaar-red-800: #9E7272;
+  --color-bazaar-red-900: #7A5353;
+  --color-bazaar-red-950: #4A2F2F;
+  --color-bazaar-red: #FFC9C9;
+
+  /* Typography Style: Decorative & Friendly */
+  --font-sans: "Quicksand", "Outfit", sans-serif;
+  --font-heading: "Fredoka", "Syne", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Asymmetric Neo-brutalist Shadows */
+  --shadow-neo-flat: 5px 5px 0px 0px #0E0F16;
+  --shadow-neo-flat-pink: 5px 5px 0px 0px #FFA6C9;
+  --shadow-neo-flat-orange: 5px 5px 0px 0px #FFB899;
+  --shadow-neo-flat-lime: 5px 5px 0px 0px #C7F9CC;
+  --shadow-neo-double-pink: 5px 5px 0px 0px #0E0F16, 9px 9px 0px 0px #FFA6C9;
+  --shadow-neo-double-lime: 5px 5px 0px 0px #0E0F16, 9px 9px 0px 0px #C7F9CC;
+  --shadow-neo-double-orange: 5px 5px 0px 0px #0E0F16, 9px 9px 0px 0px #FFB899;
+
+  /* Soft Pastel Glow Shadows */
+  --shadow-glow-pink: 0 0 18px 2px rgba(255, 166, 201, 0.4);
+  --shadow-glow-lime: 0 0 18px 2px rgba(199, 249, 204, 0.4);
+  --shadow-glow-orange: 0 0 18px 2px rgba(255, 184, 153, 0.4);
+
+  /* Asymmetric Card Borders */
+  --radius-neo-pill: 24px;
+  --radius-neo-card: 16px;
+
+  /* Transition Curves */
+  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Keyframes */
+  @keyframes marquee {
+    0% { transform: translateX(0%); }
+    100% { transform: translateX(-50%); }
+  }
+  @keyframes float {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-12px) rotate(1deg); }
+  }
+  @keyframes pulse-glow {
+    0%, 100% {
+      opacity: 1;
+      filter: drop-shadow(0 0 4px #FF007F) drop-shadow(0 0 12px #FF007F);
+    }
+    50% {
+      opacity: 0.75;
+      filter: drop-shadow(0 0 2px #FF007F) drop-shadow(0 0 6px #FF007F);
+    }
+  }
+  @keyframes spin-gradient {
+    100% { transform: rotate(360deg); }
+  }
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-3deg); }
+    50% { transform: rotate(3deg); }
+  }
+  @keyframes print-slide {
+    0% { transform: translateY(120%) scaleY(0.05); opacity: 0; }
+    75% { transform: translateY(-8%) scaleY(1.08); opacity: 0.9; }
+    100% { transform: translateY(0) scaleY(1); opacity: 1; }
+  }
+  @keyframes cmyk-split {
+    0%, 100% { text-shadow: 2px -1px 0 #00FFFF, -2px 1px 0 #FF00FF, 1px 2px 0 #FFFF00; }
+    50% { text-shadow: -1px 2px 0 #00FFFF, 2px -2px 0 #FF00FF, -2px -1px 0 #FFFF00; }
+  }
+  @keyframes scanline {
+    0% { transform: translateY(-100%); }
+    100% { transform: translateY(100%); }
+  }
+
+  /* Custom Animations mapping */
+  --animate-marquee: marquee 18s linear infinite;
+  --animate-float: float 5s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2.5s ease-in-out infinite;
+  --animate-spin-gradient: spin-gradient 6s linear infinite;
+  --animate-wiggle: wiggle 0.25s ease-in-out infinite;
+  --animate-print-slide: print-slide 0.75s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+  --animate-cmyk-split: cmyk-split 1.5s step-end infinite;
+  --animate-scanline: scanline 2s linear infinite;
+}
+
+/* Custom Base Layer CSS */
+@layer base {
+  body {
+    background-color: var(--color-jugaad-black-950);
+    color: var(--color-kulfi-white-100);
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
+  }
+}
+
+/* Custom Utilities for Neon/Brutalist components */
+.cmyk-glow {
+  animation: cmyk-split 1.5s step-end infinite;
+}
+
+.glass-morphic {
+  background: rgba(9, 10, 15, 0.75);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
