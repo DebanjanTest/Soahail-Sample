@@ -315,7 +315,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
         </div>
 
         {/* Main Grid Content */}
-        <div className="max-w-7xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10 text-left">
+        <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-12 gap-12 items-center z-10 text-left">
           
           {/* Left Column: Brand Copy & Slang Selectors */}
           <div className="lg:col-span-7 space-y-8">
@@ -513,7 +513,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -672,7 +672,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>

@@ -567,7 +567,7 @@ export default function App() {
 
       {/* Sticky Header Glassmorphic */}
       <header className="sticky top-0 z-40 glass-morphic border-b border-white/10 backdrop-blur-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
           {/* Logo with CMYK Split Animation */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('home')}>
             <div className="bg-bhangra-pink-500 p-2 rounded-lg font-heading text-lg font-black text-white transform -rotate-3 hover:rotate-3 transition duration-150 shadow-neo-flat shadow-desi-lime-500">
@@ -652,7 +652,7 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <main className="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* TAB 1: LANDING PAGE */}
         {activeTab === 'home' && (
@@ -737,10 +737,10 @@ export default function App() {
 
                 {/* Printable Safe Dynamic Boundary Box */}
                 <div 
-                  className="absolute border-2 border-dashed border-white/20 rounded flex justify-center items-center pointer-events-none"
+                  className="absolute border-2 border-dashed border-kulfi-white-400 rounded flex justify-center items-center pointer-events-none"
                   style={getPrintZoneStyle(selectedProduct.id)}
                 >
-                  <div className="absolute top-1 left-2 text-[6px] font-mono text-white/40 uppercase">PRINT ZONE</div>
+                  <div className="absolute top-1 left-2 text-[6px] font-mono text-white/70 uppercase">PRINT ZONE</div>
 
                   {/* Dynamic Image Overlay Layer */}
                   {uploadedImage && (
@@ -1655,7 +1655,7 @@ export default function App() {
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
       <footer className="bg-jugaad-black-900 border-t border-white/10 mt-16 pt-8 pb-20 md:pb-8 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">
               <h4 className="font-heading text-sm font-black uppercase text-white">Press Book</h4>

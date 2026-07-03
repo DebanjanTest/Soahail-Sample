@@ -226,6 +226,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
   const [hoveredCardId, setHoveredCardId] = useState<string | null>(null);
   const [selectedVariants, setSelectedVariants] = useState<Record<string, string>>({});
   const [pricingBreakdownOpen, setPricingBreakdownOpen] = useState<string | null>(null);
+  const [expandedDescProductId, setExpandedDescProductId] = useState<string | null>(null);
 
   // Toggle wishlist state
   const toggleWishlist = (productId: string, e: React.MouseEvent) => {
@@ -278,7 +279,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
               <Sparkles className="text-bhangra-pink-500 animate-pulse" size={28} />
               Swag & Accessories Hub
             </h2>
-            <p className="text-kulfi-white-400 text-sm md:text-base mt-1">
+            <p className="text-kulfi-white-300 text-sm md:text-base mt-1">
               Select premium bases, inspect transparent pricing, and design in the Custom Lab.
             </p>
           </div>
@@ -491,9 +492,24 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                   <h3 className="font-heading text-base md:text-lg font-bold text-white group-hover:text-bhangra-pink-500 transition-colors duration-150 leading-snug">
                     {product.name}
                   </h3>
-                  <p className="text-kulfi-white-400 text-xs mt-1 leading-normal line-clamp-2 h-8">
-                    {product.description}
-                  </p>
+                  <div className="relative">
+                    <p className={`text-kulfi-white-300 text-xs mt-1 leading-normal transition-all duration-300 ${
+                      expandedDescProductId === product.id ? '' : 'line-clamp-2 h-8'
+                    }`}>
+                      {product.description}
+                    </p>
+                    {product.description.length > 60 && (
+                      <button
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          setExpandedDescProductId(expandedDescProductId === product.id ? null : product.id);
+                        }}
+                        className="text-[10px] font-mono text-desi-lime-500 hover:text-white transition-colors mt-1 block cursor-pointer"
+                      >
+                        {expandedDescProductId === product.id ? 'Show Less ▴' : 'Show More ▾'}
+                      </button>
+                    )}
+                  </div>
                 </div>
 
                 {/* 4. Price & Cost Transparency List */}
