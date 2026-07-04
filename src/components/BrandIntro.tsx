@@ -83,13 +83,6 @@ const INK_COLORS = [
   { name: 'Signature White', hex: '#FAF9F6' }
 ];
 
-const MARQUEE_ITEMS_1 = [
-  "💥 PREMIUM CUSTOM APPAREL", "📦 NO MINIMUM ORDER QUANTITY", "⚡ EXPRESS NATIONWIDE SHIPPING", "🎨 VIBRANT HIGH-FIDELITY PRINTING", "🏢 CORPORATE BULK DISCOUNTS"
-];
-const MARQUEE_ITEMS_2 = [
-  "🧵 HIGH GSM PREMIUM FABRICS", "🌱 ECO-FRIENDLY ORGANIC COTTON", "🏆 SUPERIOR PRINT DURABILITY", "🛡️ QUALITY ASSURANCE SECURED", "🤝 LOCAL MANUFACTURING PARTNERS"
-];
-
 // Audio Context Web Synth helper (No-op to silence sound synthesis)
 const playSynthSound = (..._args: any[]) => {};
 
@@ -290,7 +283,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </div>
 
       {/* 1. HERO SECTION WITH INTEGRATED SLANG PICKER */}
-      <section className="relative min-h-[90vh] flex flex-col justify-center items-center py-12 px-4 border-b-4 border-jugaad-black-950 overflow-hidden bg-radial from-jugaad-black-900 to-jugaad-black-950">
+      <section className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 overflow-hidden">
         
         {/* Decorative Grid Mesh */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -319,25 +312,25 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
           
           {/* Left Column: Brand Copy & Slang Selectors */}
           <div className="lg:col-span-7 space-y-8">
-            <div className="inline-flex items-center gap-2 bg-jugaad-black-900 border-2 border-white/10 rounded-full px-4 py-1">
+            <div className="inline-flex items-center gap-2 bg-jugaad-black-900 border-2 border-white/10 rounded-full px-4 py-1.5 h-8">
               <Flame size={12} className="text-masala-orange-500 animate-bounce" />
-              <span className="text-3xs md:text-2xs font-mono uppercase tracking-widest text-kulfi-white-300">
-                {lang === 'EN' ? '✨ Cozy Custom Merchandise Studio' : '✨ आरामदायक कस्टम मर्चेंडाइज स्टूडियो'}
+              <span className="text-3xs md:text-2xs font-mono uppercase tracking-widest text-desi-lime-500 font-extrabold">
+                Preview Model: {activeHeroTheme.text}
               </span>
             </div>
 
             <div className="relative w-full">
-              <div className="flex flex-col">
+              <h1 className="flex flex-col">
                 <span className="font-serif italic text-3xl sm:text-4xl text-white/90 leading-tight">Top Selling</span>
                 <span className="text-6xl sm:text-7xl md:text-8xl font-black text-desi-lime-500 tracking-tighter leading-none" style={{ textShadow: '2px 2px 0px rgba(16,185,129,0.2)' }}>
-                  {activeHeroTheme.name}
+                  Custom Merch
                 </span>
-              </div>
+              </h1>
             </div>
 
             {/* Core branding statement */}
             <div className="space-y-4">
-              <p className="text-kulfi-white-400 text-sm md:text-base leading-relaxed font-sans font-medium">
+              <p className="text-kulfi-white-400 text-sm md:text-base leading-relaxed font-sans font-medium h-12 overflow-hidden">
                 {activeHeroTheme.slogan}
               </p>
               <div className="text-xs font-mono text-desi-lime-500 uppercase tracking-widest font-extrabold flex items-center gap-1">
@@ -474,46 +467,8 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
 
       </section>
 
-      {/* 2. HORIZONTAL SCROLLING STICKER MARQUEE */}
-      <section className="py-2 border-y-4 border-jugaad-black-950 bg-jugaad-black-900 relative overflow-hidden transform rotate-1">
-        
-        {/* Track 1: Moving Left */}
-        <div className="flex whitespace-nowrap overflow-hidden py-2.5">
-          <div className="flex gap-4 items-center animate-custom-marquee font-heading text-sm md:text-base font-black text-jugaad-black select-none">
-            {/* Repetitive list to allow smooth loop */}
-            {[...MARQUEE_ITEMS_1, ...MARQUEE_ITEMS_1].map((text, i) => (
-              <div 
-                key={`m1-${i}`}
-                className={`px-6 py-2 rounded-xl border-2 border-jugaad-black-950 shadow-neo-flat transition-transform hover:scale-105 active:scale-95 cursor-pointer uppercase ${
-                  i % 3 === 0 ? 'bg-bhangra-pink-500 text-white' : i % 3 === 1 ? 'bg-desi-lime-500 text-jugaad-black-950' : 'bg-masala-orange-500 text-white'
-                }`}
-              >
-                {text}
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Track 2: Moving Right */}
-        <div className="flex whitespace-nowrap overflow-hidden border-t-2 border-jugaad-black-950/20 py-2.5">
-          <div className="flex gap-4 items-center animate-custom-marquee-reverse font-heading text-sm md:text-base font-black text-jugaad-black select-none">
-            {[...MARQUEE_ITEMS_2, ...MARQUEE_ITEMS_2].map((text, i) => (
-              <div 
-                key={`m2-${i}`}
-                className={`px-6 py-2 rounded-xl border-2 border-jugaad-black-950 shadow-neo-flat transition-transform hover:scale-105 active:scale-95 cursor-pointer uppercase ${
-                  i % 3 === 0 ? 'bg-vibe-purple-500 text-white' : i % 3 === 1 ? 'bg-kulfi-white-100 text-jugaad-black-950' : 'bg-desi-lime-500 text-jugaad-black-950'
-                }`}
-              >
-                {text}
-              </div>
-            ))}
-          </div>
-        </div>
-
-      </section>
-
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="snap-section pt-24 pb-12 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -672,7 +627,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="snap-section pt-24 pb-12 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>

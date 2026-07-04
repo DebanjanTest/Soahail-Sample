@@ -196,13 +196,38 @@
   --animate-scanline: scanline 2s linear infinite;
 }
 
+html, body, #root, .root-wrapper {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  scroll-padding-top: 4.5rem;
+  height: 100%;
+}
+
 /* Custom Base Layer CSS */
 @layer base {
   body {
-    background: radial-gradient(circle at 50% 0%, #062c1d 0%, #03140e 100%);
+    background-image: url('/luxury_moss_backdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
     color: var(--color-kulfi-white-100);
     font-family: var(--font-sans);
     overflow-x: hidden;
+    height: 100%;
+    position: relative;
+  }
+
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 15%, rgba(6, 44, 29, 0.25) 0%, rgba(3, 20, 14, 0.82) 80%);
+    z-index: -1;
+    pointer-events: none;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -220,4 +245,10 @@
   background: rgba(5, 32, 22, 0.6);
   backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.snap-section {
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  min-height: 100vh;
 }

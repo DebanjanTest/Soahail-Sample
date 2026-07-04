@@ -549,7 +549,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-jugaad-black-950 text-kulfi-white-100 flex flex-col font-sans relative selection:bg-bhangra-pink-500 selection:text-white">
+    <div className="min-h-screen bg-transparent text-kulfi-white-100 flex flex-col font-sans relative selection:bg-bhangra-pink-500 selection:text-white root-wrapper">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-20 right-4 md:right-8 z-50 bg-jugaad-black-900 border-2 border-bhangra-pink-500 rounded-neo-card p-4 shadow-glow-pink max-w-sm animate-bounce flex items-center gap-3">
@@ -557,13 +557,6 @@ export default function App() {
           <p className="text-sm font-semibold">{toastMessage}</p>
         </div>
       )}
-
-      {/* Marquee Promo Bar */}
-      <div className="bg-bhangra-pink-500 text-kulfi-white-100 text-xs py-1.5 font-heading uppercase tracking-widest overflow-hidden whitespace-nowrap border-b-2 border-jugaad-black-950">
-        <div className="inline-block animate-marquee">
-          PREMIUM CUSTOM APPAREL ON DEMAND • FREE SHIPPING FOR ORDERS OVER ₹499 • UPI & RUPAY READY • ZERO CLS CUSTOM LAB • PREMIUM CUSTOM APPAREL ON DEMAND • FREE SHIPPING FOR ORDERS OVER ₹499 • UPI & RUPAY READY • ZERO CLS CUSTOM LAB •
-        </div>
-      </div>
 
       {/* Sticky Header Glassmorphic */}
       <header className="sticky top-0 z-40 glass-morphic border-b border-white/10 backdrop-blur-md">
@@ -674,7 +667,7 @@ export default function App() {
             />
 
             {/* Blank Merchandise Catalog Grid */}
-            <section id="swag-catalog" className="space-y-8 pt-8">
+            <section id="swag-catalog" className="snap-section pt-24 pb-12 flex flex-col justify-center w-full space-y-8">
               <MerchCatalog 
                 onCustomizeProduct={(product) => {
                   setSelectedProduct(product);
