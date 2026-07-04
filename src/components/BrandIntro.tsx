@@ -283,7 +283,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </div>
 
       {/* 1. HERO SECTION WITH INTEGRATED SLANG PICKER */}
-      <section className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 overflow-hidden">
+      <section className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 h-screen overflow-hidden">
         
         {/* Decorative Grid Mesh */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -468,7 +468,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section className="snap-section pt-24 pb-12 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -627,7 +627,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section className="snap-section pt-24 pb-12 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <section className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>
@@ -649,7 +649,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
           
           {/* LEFT: Live Canvas Presentation */}
-          <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-6 flex flex-col justify-between items-center relative overflow-hidden min-h-[460px] bg-radial from-jugaad-black-900 to-jugaad-black-950">
+          <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-6 flex flex-col justify-between items-center relative overflow-hidden max-h-[440px] bg-radial from-jugaad-black-900 to-jugaad-black-950">
             
             {/* Abs backdrop blur details */}
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-bhangra-pink-500/10 rounded-full filter blur-[80px] pointer-events-none z-0"></div>
@@ -721,7 +721,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
           </div>
 
           {/* RIGHT: Live Workstation Controls */}
-          <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-6 space-y-6">
+          <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-6 space-y-6 max-h-[440px] overflow-y-auto pr-2">
             
             <div className="space-y-6">
               

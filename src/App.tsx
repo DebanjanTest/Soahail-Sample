@@ -667,7 +667,7 @@ export default function App() {
             />
 
             {/* Blank Merchandise Catalog Grid */}
-            <section id="swag-catalog" className="snap-section pt-24 pb-12 flex flex-col justify-center w-full space-y-8">
+            <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 h-screen overflow-hidden">
               <MerchCatalog 
                 onCustomizeProduct={(product) => {
                   setSelectedProduct(product);
@@ -1647,7 +1647,7 @@ export default function App() {
       </main>
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
-      <footer className="bg-jugaad-black-900 border-t border-white/10 mt-16 pt-8 pb-20 md:pb-8 relative">
+      <footer className="snap-section bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center h-screen overflow-hidden">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">

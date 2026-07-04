@@ -363,7 +363,8 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
           </button>
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-16 pt-8">
+        <div className="max-h-[50vh] md:max-h-[55vh] overflow-y-auto pr-2 pb-12 scrollbar-thin text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 pt-4">
           {filteredProducts.map((product, idx) => {
             const isHovered = hoveredCardId === product.id;
             const isWishlisted = wishlist.includes(product.id);
@@ -612,6 +613,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
               </div>
             );
           })}
+          </div>
         </div>
       )}
     </section>
