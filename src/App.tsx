@@ -645,11 +645,11 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <main className="flex-grow max-w-6xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      <main className={`flex-grow w-full mx-auto ${activeTab === 'home' ? 'py-0 px-0' : 'max-w-6xl px-4 sm:px-6 lg:px-8 py-8'}`}>
         
         {/* TAB 1: LANDING PAGE */}
         {activeTab === 'home' && (
-          <div className="space-y-16">
+          <div className="space-y-0">
             
             {/* BrandIntro Section */}
             <BrandIntro 
@@ -1647,7 +1647,7 @@ export default function App() {
       </main>
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
-      <footer className="snap-section bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center h-screen overflow-hidden">
+      <footer className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section h-screen' : 'py-8'}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">

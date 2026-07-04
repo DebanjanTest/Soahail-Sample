@@ -196,21 +196,23 @@
   --animate-scanline: scanline 2s linear infinite;
 }
 
-html, body, #root, .root-wrapper {
+html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 4rem; /* offset for h-16 navbar */
+}
+
+body, #root, .root-wrapper {
   height: 100%;
 }
 
 /* Custom Base Layer CSS */
 @layer base {
   body {
-    background-image: url('/luxury_moss_backdrop.jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
+    background-image: url('/luxury_green_backdrop.jpg');
+    background-repeat: repeat;
+    background-size: 300px;
+    background-attachment: scroll;
     color: var(--color-kulfi-white-100);
     font-family: var(--font-sans);
     overflow-x: hidden;
@@ -225,7 +227,7 @@ html, body, #root, .root-wrapper {
     left: 0;
     right: 0;
     bottom: 0;
-    background: radial-gradient(circle at 50% 15%, rgba(6, 44, 29, 0.25) 0%, rgba(3, 20, 14, 0.82) 80%);
+    background: radial-gradient(circle at 50% 15%, rgba(6, 44, 29, 0.1) 0%, rgba(3, 20, 14, 0.75) 80%);
     z-index: -1;
     pointer-events: none;
   }
