@@ -300,8 +300,8 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                   onClick={() => setSelectedCategory(cat.name)}
                   className={`snap-start flex-shrink-0 px-4 py-2.5 rounded-neo-pill font-heading text-xs uppercase font-extrabold tracking-wider border-2 transition-all duration-500 ease-[var(--ease-out-quint)] hover:scale-[1.04] active:scale-[0.96] flex items-center gap-2 ${
                     isActive 
-                      ? 'bg-bhangra-pink-500 text-white border-jugaad-black-950 shadow-neo-flat shadow-desi-lime-500 translate-y-[-2px]' 
-                      : 'bg-jugaad-black-900 text-kulfi-white-300 border-white/10 hover:border-white/30 hover:text-white'
+                      ? 'bg-bhangra-pink-500 text-white border-desi-lime-500/30 shadow-neo-flat shadow-desi-lime-500 translate-y-[-2px]' 
+                      : 'bg-jugaad-black-900/60 text-kulfi-white-300 border-white/10 hover:border-desi-lime-500/30 hover:text-white'
                   }`}
                 >
                   {cat.name}
@@ -378,14 +378,14 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                   setHoveredCardId(null);
                   setPricingBreakdownOpen(null);
                 }}
-                className={`bg-jugaad-black-900 border-2 border-white/10 p-5 hover:border-bhangra-pink-500 hover:shadow-neo-flat hover:shadow-bhangra-pink-500 transition-all duration-500 ease-[var(--ease-out-quint)] hover:scale-[1.04] active:scale-[0.96] flex flex-col justify-between relative group ${
+                className={`bg-jugaad-black-900/60 border border-white/5 p-5 hover:border-desi-lime-500/30 hover:shadow-neo-flat hover:shadow-bhangra-pink-500 transition-all duration-300 ease-[var(--ease-out-quint)] hover:scale-[1.04] active:scale-[0.96] flex flex-col justify-between relative group ${
                   idx % 2 === 1 ? 'lg:translate-y-8 rounded-[32px_12px_32px_12px]' : 'rounded-[12px_32px_12px_32px]'
                 }`}
               >
                 {/* 1. Image Container (with secondary angle hover state & variant overlay) */}
                 <div 
                   className="aspect-[4/5] w-full bg-jugaad-black-950 rounded-lg mb-4 relative overflow-hidden flex justify-center items-center border border-white/5 select-none"
-                  style={product.imageUrl.endsWith('.png') ? { background: 'radial-gradient(circle, rgba(114, 9, 183, 0.3) 0%, rgba(9, 10, 15, 0.95) 100%)' } : {}}
+                  style={product.imageUrl.endsWith('.png') ? { background: 'radial-gradient(circle, rgba(0, 200, 151, 0.15) 0%, rgba(5, 32, 22, 0.95) 100%)' } : {}}
                 >
                   {/* Floating Tags (e.g., "POPULAR", "100% COTTON") */}
                   <div className="absolute top-3 left-3 z-20 flex flex-col gap-1.5 items-start pointer-events-none">
@@ -394,10 +394,10 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                         key={tag}
                         className={`text-[9px] font-heading font-black tracking-wider px-2.5 py-0.5 rounded-sm uppercase ${
                           tag.includes('Vibe Approved') || tag.includes('Loved by all') || tag.includes('HIGH HEAT')
-                            ? 'bg-bhangra-pink-500 text-white shadow-[2px_2px_0px_0px_#090A0F]'
+                            ? 'bg-bhangra-pink-500/20 text-bhangra-pink-500 border border-bhangra-pink-500/30'
                             : tag.includes('Weatherproof') || tag.includes('Fancy Stitching') || tag.includes('DESI SELLER') || tag.includes('NEON EMBROIDERY')
-                            ? 'bg-desi-lime-500 text-jugaad-black-950 shadow-[2px_2px_0px_0px_#090A0F]'
-                            : 'bg-masala-orange-500 text-white shadow-[2px_2px_0px_0px_#090A0F]'
+                            ? 'bg-desi-lime-500/20 text-desi-lime-500 border border-desi-lime-500/30'
+                            : 'bg-masala-orange-500/20 text-masala-orange-500 border border-masala-orange-500/30'
                         }`}
                       >
                         {tag}
@@ -416,6 +416,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
 
                   {/* Main / Hover Mockup Image */}
                   <div className="w-full h-full absolute inset-0 transition-opacity duration-300 flex justify-center items-center p-6">
+                    <div className="absolute w-36 h-36 bg-desi-lime-500/5 rounded-full filter blur-2xl pointer-events-none"></div>
                     {product.imageUrl.endsWith('.png') ? (
                       <img
                         src={product.imageUrl}
@@ -479,11 +480,11 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                 </div>
 
                 {/* 2. Rating & Reviews info */}
-                <div className="flex items-center gap-1 text-2xs text-kulfi-white-400 mb-1.5">
-                  <div className="flex text-chai-gold-500">
-                    <Star size={11} fill="#FFB703" />
+                <div className="flex items-center gap-1.5 text-2xs text-kulfi-white-400 mb-1.5">
+                  <div className="flex items-center gap-0.5 bg-chai-gold-500/10 border border-chai-gold-500/20 px-1.5 py-0.5 rounded text-chai-gold-500 font-bold">
+                    <Star size={10} fill="currentColor" className="text-chai-gold-500" />
+                    <span>{product.rating}</span>
                   </div>
-                  <span className="font-bold text-white">{product.rating}</span>
                   <span>({product.reviewsCount} reviews)</span>
                 </div>
 
@@ -563,7 +564,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
 
                   {/* Transparent Pricing Breakdown Overlay Panel (Zero layout shift popup) */}
                   {isPricingOpen && (
-                    <div className="absolute bottom-full left-0 z-30 mb-2 w-64 bg-jugaad-black-950 border-2 border-white/15 rounded-lg p-3.5 shadow-2xl animate-print-slide">
+                    <div className="absolute bottom-full left-0 z-30 mb-2 w-64 bg-jugaad-black-900/95 border-2 border-desi-lime-500/30 rounded-lg p-3.5 shadow-2xl animate-print-slide backdrop-blur-md">
                       <div className="text-[10px] font-mono text-desi-lime-500 uppercase tracking-widest border-b border-white/10 pb-1.5 mb-2 font-bold flex justify-between">
                         <span>Price Breakdown</span>
                         <span>100% Transparent</span>
@@ -583,11 +584,11 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                         </div>
                         <div className="flex justify-between pt-1 font-heading text-xs font-black">
                           <span className="text-white uppercase">Final Price:</span>
-                          <span className="text-bhangra-pink-500">₹{product.totalPrice}</span>
+                          <span className="text-chai-gold-500 font-black">₹{product.totalPrice}</span>
                         </div>
                       </div>
                       {/* Decorative scanning-bar on popup */}
-                      <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-bhangra-pink-500 to-transparent mt-2"></div>
+                      <div className="w-full h-0.5 bg-gradient-to-r from-transparent via-desi-lime-500 to-transparent mt-2"></div>
                     </div>
                   )}
                 </div>

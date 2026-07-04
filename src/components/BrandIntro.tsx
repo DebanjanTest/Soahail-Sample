@@ -14,12 +14,12 @@ interface BrandIntroProps {
 }
 
 const HERO_THEMES = [
-  { id: 'tshirt', name: 'Classic Cotton Tee', color: '#FF007F', text: 'Classic Cotton Tee', slogan: 'Premium 240 GSM organic cotton streetwear.' },
-  { id: 'hoodie', name: 'Premium Heavyweight Hoodie', color: '#FF5400', text: 'Premium Heavyweight Hoodie', slogan: 'Cozy 400 GSM fleece-lined oversized hoodie.' },
-  { id: 'mug', name: 'Ceramic Coffee Mug', color: '#7209B7', text: 'Ceramic Coffee Mug', slogan: 'Premium matte finish 350ml ceramic mug.' },
-  { id: 'notebook', name: 'Executive Notebook', color: '#0077B6', text: 'Executive Wirebound Notebook', slogan: 'A5 spiral bound ruled 120 GSM notebook.' },
-  { id: 'pen', name: 'Executive Pen', color: '#ADFF2F', text: 'Matte Executive Pen', slogan: 'Full metal body ballpoint pen with Swiss ink.' },
-  { id: 'phone_case', name: 'Premium Mobile Cover', color: '#E0A96D', text: 'Premium Matte Mobile Cover', slogan: 'Polycarbonate hard shell wrap-around printing case.' }
+  { id: 'tshirt', name: 'Classic Cotton Tee', color: '#052c1e', text: 'Classic Cotton Tee', slogan: 'Premium 240 GSM organic cotton streetwear.' },
+  { id: 'hoodie', name: 'Premium Heavyweight Hoodie', color: '#083d29', text: 'Premium Heavyweight Hoodie', slogan: 'Cozy 400 GSM fleece-lined oversized hoodie.' },
+  { id: 'mug', name: 'Ceramic Coffee Mug', color: '#0a4730', text: 'Ceramic Coffee Mug', slogan: 'Premium matte finish 350ml ceramic mug.' },
+  { id: 'notebook', name: 'Executive Notebook', color: '#073826', text: 'Executive Wirebound Notebook', slogan: 'A5 spiral bound ruled 120 GSM notebook.' },
+  { id: 'pen', name: 'Executive Pen', color: '#062e1f', text: 'Matte Executive Pen', slogan: 'Full metal body ballpoint pen with Swiss ink.' },
+  { id: 'phone_case', name: 'Premium Mobile Cover', color: '#09402c', text: 'Premium Matte Mobile Cover', slogan: 'Polycarbonate hard shell wrap-around printing case.' }
 ];
 
 const PREVIEW_PRODUCTS = [
@@ -327,14 +327,12 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
             </div>
 
             <div className="relative w-full">
-              <h1 
-                className="text-4xl sm:text-6xl md:text-7xl font-heading font-black tracking-tight leading-none uppercase select-none text-white"
-              >
-                CUSTOM DESIGN & <br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-bhangra-pink-500 via-masala-orange-500 to-desi-lime-500 filter drop-shadow-[0_4px_12px_rgba(255,0,127,0.35)]">
+              <div className="flex flex-col">
+                <span className="font-serif italic text-3xl sm:text-4xl text-white/90 leading-tight">Top Selling</span>
+                <span className="text-6xl sm:text-7xl md:text-8xl font-black text-desi-lime-500 tracking-tighter leading-none" style={{ textShadow: '2px 2px 0px rgba(16,185,129,0.2)' }}>
                   {activeHeroTheme.name}
                 </span>
-              </h1>
+              </div>
             </div>
 
             {/* Core branding statement */}
@@ -384,6 +382,8 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
                 boxShadow: `4px 4px 0px 0px #090A0F, 8px 8px 0px 0px ${activeHeroTheme.color}` 
               }}
             >
+              <div className="absolute w-56 h-56 bg-desi-lime-500/10 rounded-full filter blur-3xl pointer-events-none z-0"></div>
+
               {/* Decorative print target overlay */}
               <div className="absolute inset-4 border border-dashed border-white/10 rounded-xl pointer-events-none flex items-center justify-center">
                 <div className="w-12 h-12 border border-white/5 rounded-full"></div>

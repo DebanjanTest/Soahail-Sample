@@ -6,8 +6,8 @@
   --color-bhangra-pink-100: #FFE3EC;
   --color-bhangra-pink-200: #FFC4D6;
   --color-bhangra-pink-300: #FFA6C9;
-  --color-bhangra-pink-400: #FF87B2;
-  --color-bhangra-pink-500: #FFA6C9; /* Soft Pastel Pink */
+  --color-bhangra-pink-400: #059669;
+  --color-bhangra-pink-500: #10B981; /* Soft Pastel Pink */
   --color-bhangra-pink-600: #E68FA5;
   --color-bhangra-pink-700: #C26B82;
   --color-bhangra-pink-800: #9E4D61;
@@ -20,7 +20,7 @@
   --color-masala-orange-200: #FFCCB0;
   --color-masala-orange-300: #FFB899; /* Soft Pastel Apricot */
   --color-masala-orange-400: #FFA37A;
-  --color-masala-orange-500: #FFB899;
+  --color-masala-orange-500: #34D399;
   --color-masala-orange-600: #E69B7C;
   --color-masala-orange-700: #C2795C;
   --color-masala-orange-800: #9E5B41;
@@ -33,7 +33,7 @@
   --color-desi-lime-200: #C7F9CC; /* Soft Pastel Mint Green */
   --color-desi-lime-300: #A8F0B4;
   --color-desi-lime-400: #8CE89E;
-  --color-desi-lime-500: #C7F9CC;
+  --color-desi-lime-500: #00C897;
   --color-desi-lime-600: #9ED4A3;
   --color-desi-lime-700: #7FB284;
   --color-desi-lime-800: #629166;
@@ -46,7 +46,7 @@
   --color-vibe-purple-200: #D6C7FF; /* Soft Pastel Lavender */
   --color-vibe-purple-300: #BEAAFF;
   --color-vibe-purple-400: #A58BFF;
-  --color-vibe-purple-500: #D6C7FF;
+  --color-vibe-purple-500: #065f46;
   --color-vibe-purple-600: #B2A2E6;
   --color-vibe-purple-700: #9181C2;
   --color-vibe-purple-800: #70629E;
@@ -62,9 +62,9 @@
   --color-jugaad-black-500: #555E70;
   --color-jugaad-black-600: #3E4657;
   --color-jugaad-black-700: #2C3242;
-  --color-jugaad-black-800: #1C202C; /* Soft Slate Charcoal */
-  --color-jugaad-black-900: #141722; /* Soft Slate Dark */
-  --color-jugaad-black-950: #0E0F16; /* Soft Deep Dark */
+  --color-jugaad-black-800: #0a3022; /* Soft Slate Charcoal */
+  --color-jugaad-black-900: #052016; /* Soft Slate Dark */
+  --color-jugaad-black-950: #03140e; /* Soft Deep Dark */
   --color-jugaad-black: #0E0F16;
 
   --color-chai-gold-50: #FFFDF0;
@@ -85,7 +85,7 @@
   --color-monsoon-blue-200: #B9E2FC; /* Soft Pastel Baby Blue */
   --color-monsoon-blue-300: #92CDFA;
   --color-monsoon-blue-400: #6EB2F0;
-  --color-monsoon-blue-500: #B9E2FC;
+  --color-monsoon-blue-500: #6EE7B7;
   --color-monsoon-blue-600: #9CC5E6;
   --color-monsoon-blue-700: #7EA7C2;
   --color-monsoon-blue-800: #6289A1;
@@ -94,7 +94,7 @@
   --color-monsoon-blue: #B9E2FC;
 
   --color-kulfi-white-50: #FFFFFF;
-  --color-kulfi-white-100: #FAF8F5; /* Warm Soft Vanilla Cream */
+  --color-kulfi-white-100: #FAF9F6; /* Warm Soft Vanilla Cream */
   --color-kulfi-white-200: #F3EFE7;
   --color-kulfi-white-300: #E6DEC9;
   --color-kulfi-white-400: #D3CAB5;
@@ -199,7 +199,7 @@
 /* Custom Base Layer CSS */
 @layer base {
   body {
-    background-color: var(--color-jugaad-black-950);
+    background: radial-gradient(circle at 50% 0%, #062c1d 0%, #03140e 100%);
     color: var(--color-kulfi-white-100);
     font-family: var(--font-sans);
     overflow-x: hidden;
@@ -217,7 +217,7 @@
 }
 
 .glass-morphic {
-  background: rgba(9, 10, 15, 0.75);
-  backdrop-filter: blur(12px);
+  background: rgba(5, 32, 22, 0.6);
+  backdrop-filter: blur(16px);
   border: 1px solid rgba(255, 255, 255, 0.08);
 }
