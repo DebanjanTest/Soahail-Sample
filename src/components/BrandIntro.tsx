@@ -283,7 +283,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </div>
 
       {/* 1. HERO SECTION WITH INTEGRATED SLANG PICKER */}
-      <section className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 h-screen overflow-hidden">
+      <section id="hero-intro" className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 h-screen overflow-hidden">
         
         {/* Decorative Grid Mesh */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -468,7 +468,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
+      <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -486,7 +486,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
 
         {/* Silkscreen frame mockup */}
         <div className="max-w-2xl mx-auto">
-          <div className="bg-jugaad-black-900 border-4 border-jugaad-black-950 rounded-[16px_48px_16px_48px] overflow-hidden relative shadow-2xl p-4 md:p-6 bg-gradient-to-b from-jugaad-black-900 to-jugaad-black-950">
+          <div className="bg-jugaad-black-900/80 border-3 border-jugaad-black-950 rounded-[24px_72px_24px_72px] overflow-hidden relative shadow-2xl p-6 md:p-8 backdrop-blur-md">
             
             {/* Screen border styling */}
             <div className="absolute top-2 left-2 text-3xs font-mono text-white/30 uppercase tracking-widest z-20">
@@ -613,7 +613,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
             </div>
 
             {/* Instructions bottom helper */}
-            <div className="mt-3 flex justify-between items-center text-3xs font-mono text-kulfi-white-400 uppercase tracking-widest">
+            <div className="mt-4 pt-3 border-t border-white/5 flex justify-between items-center text-3xs font-mono text-kulfi-white-400 uppercase tracking-widest">
               <span>Squeegee Speed: 24cm/sec</span>
               <span className="text-desi-lime-500 flex items-center gap-1">
                 <span className="w-1.5 h-1.5 bg-desi-lime-500 rounded-full animate-pulse"></span>
@@ -627,7 +627,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
+      <section id="mockup-workstation" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>

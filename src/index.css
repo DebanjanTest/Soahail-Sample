@@ -210,8 +210,9 @@ body, #root, .root-wrapper {
 @layer base {
   body {
     background-image: url('/luxury_green_backdrop.jpg');
-    background-repeat: repeat;
-    background-size: 300px;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
     background-attachment: scroll;
     color: var(--color-kulfi-white-100);
     font-family: var(--font-sans);

@@ -559,8 +559,8 @@ export default function App() {
       )}
 
       {/* Sticky Header Glassmorphic */}
-      <header className="sticky top-0 z-40 glass-morphic border-b border-white/10 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex justify-between items-center">
+      <header className="fixed top-4 left-1/2 -translate-x-1/2 w-full max-w-6xl px-4 sm:px-6 lg:px-8 z-40 pointer-events-none">
+        <div className="glass-morphic border border-white/10 backdrop-blur-md rounded-2xl px-6 h-16 flex justify-between items-center pointer-events-auto shadow-2xl">
           {/* Logo with CMYK Split Animation */}
           <div className="flex items-center gap-2 cursor-pointer" onClick={() => setActiveTab('home')}>
             <div className="bg-bhangra-pink-500 p-2 rounded-lg font-heading text-lg font-black text-white transform -rotate-3 hover:rotate-3 transition duration-150 shadow-neo-flat shadow-desi-lime-500">
@@ -649,37 +649,84 @@ export default function App() {
         
         {/* TAB 1: LANDING PAGE */}
         {activeTab === 'home' && (
-          <div className="space-y-0">
-            
-            {/* BrandIntro Section */}
-            <BrandIntro 
-              lang={lang}
-              onCustomizeClick={(productType, initialText) => {
-                const template = PRODUCT_TEMPLATES.find(p => p.id === productType);
-                if (template) {
-                  setSelectedProduct(template);
-                }
-                if (initialText) {
-                  setPrintText(initialText);
-                }
-                setActiveTab('customize');
-              }}
-            />
+          <>
+            {/* Vinyl CD Deck Section Navigation */}
+            <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex items-center gap-4 group pointer-events-none">
+              {/* Spinning Vinyl Record Disc */}
+              <div className="w-16 h-16 bg-black rounded-full border-2 border-desi-lime-500/30 flex items-center justify-center relative shadow-2xl pointer-events-auto animate-[spin_10s_linear_infinite] group-hover:animate-[spin_4s_linear_infinite] cursor-pointer">
+                {/* Grooves */}
+                <div className="absolute inset-2 border border-white/5 rounded-full"></div>
+                <div className="absolute inset-4 border border-white/10 rounded-full"></div>
+                <div className="absolute inset-6 border border-white/15 rounded-full"></div>
+                {/* Center Label (Mini CD) */}
+                <div className="w-6 h-6 bg-desi-lime-500 rounded-full flex items-center justify-center relative shadow">
+                  <div className="w-1.5 h-1.5 bg-jugaad-black-950 rounded-full"></div>
+                </div>
+              </div>
 
-            {/* Blank Merchandise Catalog Grid */}
-            <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 h-screen overflow-hidden">
-              <MerchCatalog 
-                onCustomizeProduct={(product) => {
-                  setSelectedProduct(product);
+              {/* Cassette/CD Player Control Box (Slides open on hover or sits next to it) */}
+              <div className="bg-[#052016]/95 border-2 border-white/10 p-4 rounded-2xl shadow-2xl pointer-events-auto flex flex-col gap-2 w-44 transition-all duration-300">
+                <span className="text-[9px] font-mono text-desi-lime-500 uppercase tracking-widest font-black border-b border-white/10 pb-1.5 block">
+                  💿 PRESS DECK • SELECT TRACK
+                </span>
+                <div className="space-y-1">
+                  {[
+                    { id: 'hero-intro', track: '01', name: 'Intro Swag' },
+                    { id: 'print-simulator', track: '02', name: 'Squeegee Lab' },
+                    { id: 'mockup-workstation', track: '03', name: 'Ink Simulator' },
+                    { id: 'swag-catalog', track: '04', name: 'Swag Catalog' },
+                    { id: 'studio-footer', track: '05', name: 'Studio Footer' }
+                  ].map((track) => (
+                    <button
+                      key={track.id}
+                      onClick={() => {
+                        const el = document.getElementById(track.id);
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth' });
+                        }
+                      }}
+                      className="w-full text-left py-1 px-2 rounded hover:bg-white/5 flex items-center gap-2 group/btn cursor-pointer transition text-2xs font-mono text-kulfi-white-300 hover:text-white"
+                    >
+                      <span className="text-desi-lime-500 font-extrabold">{track.track}</span>
+                      <span className="truncate">{track.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-0">
+              
+              {/* BrandIntro Section */}
+              <BrandIntro 
+                lang={lang}
+                onCustomizeClick={(productType, initialText) => {
+                  const template = PRODUCT_TEMPLATES.find(p => p.id === productType);
+                  if (template) {
+                    setSelectedProduct(template);
+                  }
+                  if (initialText) {
+                    setPrintText(initialText);
+                  }
                   setActiveTab('customize');
-                  setTimeout(() => {
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
-                  }, 100);
                 }}
-                onAddToCart={handleQuickAddToCart}
               />
-            </section>
-          </div>
+
+              {/* Blank Merchandise Catalog Grid */}
+              <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 h-screen overflow-hidden">
+                <MerchCatalog 
+                  onCustomizeProduct={(product) => {
+                    setSelectedProduct(product);
+                    setActiveTab('customize');
+                    setTimeout(() => {
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }, 100);
+                  }}
+                  onAddToCart={handleQuickAddToCart}
+                />
+              </section>
+            </div>
+          </>
         )}
 
         {/* TAB 2: CUSTOMIZE LAB */}
@@ -1641,13 +1688,31 @@ export default function App() {
               </div>
             </div>
 
+            {/* Vinyl CD Deck: Active Job Status Indicator */}
+            <div className="mt-8 p-6 bg-gradient-to-r from-jugaad-black-950 to-jugaad-black-900 border border-white/10 rounded-lg flex items-center justify-between">
+               <div className="flex items-center gap-4">
+                 <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 animate-spin-slow flex items-center justify-center">
+                    <div className="w-4 h-4 rounded-full bg-bhangra-pink-500"></div>
+                 </div>
+                 <div>
+                   <h4 className="font-heading font-bold text-white uppercase">Live Production Deck</h4>
+                   <p className="text-2xs font-mono text-kulfi-white-400">Syncing real-time print head telemetry from fulfillment partners.</p>
+                 </div>
+               </div>
+               <div className="flex gap-2">
+                 {['STATUS_OK', 'SYNC_LIVE', 'READY_PRINT'].map((tag) => (
+                    <span key={tag} className="px-2 py-1 rounded bg-white/5 text-desi-lime-500 text-3xs font-mono font-bold uppercase border border-desi-lime-500/20">{tag}</span>
+                 ))}
+               </div>
+            </div>
+
           </div>
         )}
 
       </main>
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
-      <footer className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section h-screen' : 'py-8'}`}>
+      <footer id="studio-footer" className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section h-screen pt-24 pb-8' : 'py-8'}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">
