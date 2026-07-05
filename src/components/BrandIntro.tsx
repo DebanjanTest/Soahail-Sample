@@ -28,42 +28,42 @@ const PREVIEW_PRODUCTS = [
     name: 'Classic Cotton Tee', 
     image: '/blank_tshirt.png', 
     defaultPrice: 499, 
-    placement: { top: '35%', left: '50%', transform: 'translate(-50%, -50%)', width: '38%', fontSize: '1.2rem', textTransform: 'uppercase' as const } 
+    placement: { top: '38%', left: '50%', transform: 'translate(-50%, -50%) perspective(500px) rotateX(5deg)', width: '35%', fontSize: '1.2rem', textTransform: 'uppercase' as const } 
   },
   { 
     id: 'hoodie', 
     name: 'Premium Heavyweight Hoodie', 
     image: '/blank_hoodie.png', 
     defaultPrice: 899, 
-    placement: { top: '38%', left: '50%', transform: 'translate(-50%, -50%)', width: '36%', fontSize: '1.1rem', textTransform: 'uppercase' as const } 
+    placement: { top: '42%', left: '50%', transform: 'translate(-50%, -50%) perspective(500px) rotateX(8deg)', width: '32%', fontSize: '1.1rem', textTransform: 'uppercase' as const } 
   },
   { 
     id: 'mug', 
     name: 'Ceramic Coffee Mug', 
     image: '/blank_mug.png', 
     defaultPrice: 249, 
-    placement: { top: '48%', left: '46%', transform: 'translate(-50%, -50%)', width: '34%', fontSize: '0.8rem', textTransform: 'uppercase' as const } 
+    placement: { top: '52%', left: '43%', transform: 'translate(-50%, -50%) perspective(250px) rotateY(-14deg) scaleX(0.9)', width: '38%', fontSize: '0.85rem', textTransform: 'uppercase' as const } 
   },
   { 
     id: 'notebook', 
     name: 'Executive Wirebound Notebook', 
     image: '/blank_notebook.png', 
     defaultPrice: 199, 
-    placement: { top: '48%', left: '50%', transform: 'translate(-50%, -50%)', width: '45%', fontSize: '0.9rem', textTransform: 'uppercase' as const } 
+    placement: { top: '50%', left: '52%', transform: 'translate(-50%, -50%) perspective(400px) rotateY(-4deg) rotateX(6deg)', width: '42%', fontSize: '0.9rem', textTransform: 'uppercase' as const } 
   },
   { 
     id: 'pen', 
     name: 'Matte Executive Pen', 
     image: '/blank_pen.png', 
     defaultPrice: 49, 
-    placement: { top: '48%', left: '50%', transform: 'translate(-50%, -50%) rotate(-5deg)', width: '55%', fontSize: '0.4rem', textTransform: 'uppercase' as const } 
+    placement: { top: '50.5%', left: '50%', transform: 'translate(-50%, -50%) perspective(150px) rotateX(35deg)', width: '60%', fontSize: '0.35rem', textTransform: 'uppercase' as const } 
   },
   { 
     id: 'phone_case', 
     name: 'Premium Mobile Cover', 
     image: '/blank_phone_case.png', 
     defaultPrice: 319, 
-    placement: { top: '50%', left: '50%', transform: 'translate(-50%, -50%)', width: '45%', fontSize: '0.8rem', textTransform: 'uppercase' as const } 
+    placement: { top: '50%', left: '50%', transform: 'translate(-50%, -50%) perspective(300px) rotateX(2deg)', width: '38%', fontSize: '0.8rem', textTransform: 'uppercase' as const } 
   },
 ];
 
