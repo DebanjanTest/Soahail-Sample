@@ -156,6 +156,8 @@ export default function App() {
   // Navigation: 'home' | 'customize' | 'cart' | 'orders' | 'partner' | 'admin'
   const [activeTab, setActiveTab] = useState<'home' | 'customize' | 'cart' | 'orders' | 'partner' | 'admin'>('home');
   const [lang, setLang] = useState<'EN' | 'HI'>('EN');
+  const [activeSectionIdx, setActiveSectionIdx] = useState<number>(0);
+  const [mobileDeckOpen, setMobileDeckOpen] = useState<boolean>(false);
 
   // Customize Lab State
   const [selectedProduct, setSelectedProduct] = useState(PRODUCT_TEMPLATES[0]);
@@ -275,6 +277,98 @@ export default function App() {
     }
     return () => clearInterval(timer);
   }, [paymentModalOpen, upiTimer]);
+
+  // Scroll Lock & Section Transition Effect
+  useEffect(() => {
+    if (activeTab !== 'home') return;
+
+    let isScrolling = false;
+    const sectionsList = ['hero-intro', 'print-simulator', 'mockup-workstation', 'swag-catalog', 'studio-footer'];
+
+    const scrollToSection = (index: number) => {
+      const targetId = sectionsList[index];
+      const el = document.getElementById(targetId);
+      if (el) {
+        setActiveSectionIdx(index);
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
+    };
+
+    const handleWheel = (e: WheelEvent) => {
+      e.preventDefault();
+      if (isScrolling) return;
+
+      const direction = e.deltaY > 0 ? 1 : -1;
+      const nextIdx = activeSectionIdx + direction;
+      if (nextIdx >= 0 && nextIdx < sectionsList.length) {
+        isScrolling = true;
+        scrollToSection(nextIdx);
+        setTimeout(() => {
+          isScrolling = false;
+        }, 1000);
+      }
+    };
+
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (['ArrowDown', 'PageDown'].includes(e.key)) {
+        e.preventDefault();
+        if (isScrolling) return;
+        const nextIdx = activeSectionIdx + 1;
+        if (nextIdx < sectionsList.length) {
+          isScrolling = true;
+          scrollToSection(nextIdx);
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
+        }
+      } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
+        e.preventDefault();
+        if (isScrolling) return;
+        const nextIdx = activeSectionIdx - 1;
+        if (nextIdx >= 0) {
+          isScrolling = true;
+          scrollToSection(nextIdx);
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
+        }
+      }
+    };
+
+    let touchStartY = 0;
+    const handleTouchStart = (e: TouchEvent) => {
+      touchStartY = e.touches[0].clientY;
+    };
+
+    const handleTouchEnd = (e: TouchEvent) => {
+      if (isScrolling) return;
+      const touchEndY = e.changedTouches[0].clientY;
+      const deltaY = touchStartY - touchEndY;
+      if (Math.abs(deltaY) > 50) {
+        const direction = deltaY > 0 ? 1 : -1;
+        const nextIdx = activeSectionIdx + direction;
+        if (nextIdx >= 0 && nextIdx < sectionsList.length) {
+          isScrolling = true;
+          scrollToSection(nextIdx);
+          setTimeout(() => {
+            isScrolling = false;
+          }, 1000);
+        }
+      }
+    };
+
+    window.addEventListener('wheel', handleWheel, { passive: false });
+    window.addEventListener('keydown', handleKeyDown, { passive: false });
+    window.addEventListener('touchstart', handleTouchStart, { passive: true });
+    window.addEventListener('touchend', handleTouchEnd, { passive: true });
+
+    return () => {
+      window.removeEventListener('wheel', handleWheel);
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('touchstart', handleTouchStart);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [activeTab, activeSectionIdx]);
 
   const triggerToast = (msg: string) => {
     setToastMessage(msg);
@@ -645,13 +739,13 @@ export default function App() {
       </header>
 
       {/* Main Container */}
-      <main className={`flex-grow w-full mx-auto ${activeTab === 'home' ? 'py-0 px-0' : 'max-w-6xl px-4 sm:px-6 lg:px-8 py-8'}`}>
+      <main className={`flex-grow w-full mx-auto ${activeTab === 'home' ? 'py-0 px-0' : 'max-w-6xl px-4 md:px-8 py-4 md:py-8'}`}>
         
         {/* TAB 1: LANDING PAGE */}
         {activeTab === 'home' && (
           <>
-            {/* Vinyl CD Deck Section Navigation */}
-            <div className="fixed left-6 top-1/2 -translate-y-1/2 z-50 flex items-center gap-4 group pointer-events-none">
+            {/* Desktop Vinyl CD Deck (Hidden on Mobile) */}
+            <div className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 items-center gap-4 group pointer-events-none">
               {/* Spinning Vinyl Record Disc */}
               <div className="w-16 h-16 bg-black rounded-full border-2 border-desi-lime-500/30 flex items-center justify-center relative shadow-2xl pointer-events-auto animate-[spin_10s_linear_infinite] group-hover:animate-[spin_4s_linear_infinite] cursor-pointer">
                 {/* Grooves */}
@@ -676,16 +770,74 @@ export default function App() {
                     { id: 'mockup-workstation', track: '03', name: 'Ink Simulator' },
                     { id: 'swag-catalog', track: '04', name: 'Swag Catalog' },
                     { id: 'studio-footer', track: '05', name: 'Studio Footer' }
-                  ].map((track) => (
+                  ].map((track, idx) => (
                     <button
                       key={track.id}
                       onClick={() => {
                         const el = document.getElementById(track.id);
                         if (el) {
-                          el.scrollIntoView({ behavior: 'smooth' });
+                          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
                         }
+                        setActiveSectionIdx(idx);
                       }}
-                      className="w-full text-left py-1 px-2 rounded hover:bg-white/5 flex items-center gap-2 group/btn cursor-pointer transition text-2xs font-mono text-kulfi-white-300 hover:text-white"
+                      className={`w-full text-left py-1 px-2 rounded flex items-center gap-2 group/btn cursor-pointer transition text-2xs font-mono ${
+                        activeSectionIdx === idx 
+                          ? 'bg-desi-lime-500/10 text-white border-l-2 border-desi-lime-500 pl-1.5' 
+                          : 'hover:bg-white/5 text-kulfi-white-300 hover:text-white'
+                      }`}
+                    >
+                      <span className={`${activeSectionIdx === idx ? 'text-desi-lime-500' : 'text-desi-lime-500/60'} font-extrabold`}>{track.track}</span>
+                      <span className="truncate">{track.name}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Mobile Spinning CD Button */}
+            <div 
+              onClick={() => setMobileDeckOpen(!mobileDeckOpen)}
+              className="fixed left-4 bottom-20 z-50 md:hidden w-12 h-12 rounded-full border border-desi-lime-500/40 bg-jugaad-black-950 flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer animate-[spin_8s_linear_infinite]"
+            >
+              {/* Grooves */}
+              <div className="absolute inset-1 border border-white/5 rounded-full"></div>
+              <div className="absolute inset-2 border border-white/10 rounded-full"></div>
+              <div className="absolute inset-3 border border-white/15 rounded-full"></div>
+              {/* Center Label (Mini CD) */}
+              <div className="w-4 h-4 bg-desi-lime-500 rounded-full flex items-center justify-center relative shadow">
+                <div className="w-1 h-1 bg-jugaad-black-950 rounded-full"></div>
+              </div>
+            </div>
+
+            {/* Mobile Sliding Track Panel */}
+            {mobileDeckOpen && (
+              <div className="fixed bottom-[5.5rem] left-4 right-4 z-50 bg-[#052016]/95 backdrop-blur-md border border-white/10 p-4 rounded-2xl shadow-2xl pointer-events-auto flex flex-col gap-2">
+                <span className="text-[9px] font-mono text-desi-lime-500 uppercase tracking-widest font-black border-b border-white/10 pb-1.5 block">
+                  💿 PRESS DECK • SELECT TRACK
+                </span>
+                <div className="flex flex-col gap-1">
+                  {[
+                    { id: 'hero-intro', track: '01', name: 'Intro Swag' },
+                    { id: 'print-simulator', track: '02', name: 'Squeegee Lab' },
+                    { id: 'mockup-workstation', track: '03', name: 'Ink Simulator' },
+                    { id: 'swag-catalog', track: '04', name: 'Swag Catalog' },
+                    { id: 'studio-footer', track: '05', name: 'Studio Footer' }
+                  ].map((track, idx) => (
+                    <button
+                      key={track.id}
+                      onClick={() => {
+                        const el = document.getElementById(track.id);
+                        if (el) {
+                          el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                        }
+                        setActiveSectionIdx(idx);
+                        setMobileDeckOpen(false);
+                      }}
+                      className={`w-full text-left py-2 px-3 rounded flex items-center gap-2 cursor-pointer transition text-xs font-mono ${
+                        activeSectionIdx === idx 
+                          ? 'bg-desi-lime-500/10 text-white border-l-2 border-desi-lime-500 pl-2.5' 
+                          : 'hover:bg-white/5 text-kulfi-white-300 hover:text-white'
+                      }`}
                     >
                       <span className="text-desi-lime-500 font-extrabold">{track.track}</span>
                       <span className="truncate">{track.name}</span>
@@ -693,7 +845,7 @@ export default function App() {
                   ))}
                 </div>
               </div>
-            </div>
+            )}
 
             <div className="space-y-0">
               
@@ -734,7 +886,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* LEFT CONTAINER: Merch Interactive Mockup Canvas */}
-            <div className="lg:col-span-7 bg-jugaad-black-900 border-2 border-white/10 rounded-[48px_16px_48px_16px] p-6 flex flex-col items-center justify-center sticky top-24 min-h-[500px] overflow-hidden">
+            <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-4 md:p-6 flex flex-col justify-between items-center relative overflow-hidden h-[45vh] lg:h-auto max-h-[440px] bg-radial from-jugaad-black-900 to-jugaad-black-950">
               <div className="w-full flex justify-between items-center mb-6">
                 <div>
                   <h3 className="text-sm font-mono text-desi-lime-500 uppercase tracking-widest">Merchandise Workspace</h3>
@@ -913,7 +1065,7 @@ export default function App() {
             </div>
 
             {/* RIGHT CONTAINER: Control workspace */}
-            <div className="lg:col-span-5 space-y-6">
+            <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-4 md:p-6 space-y-4 lg:space-y-6 lg:max-h-[440px] overflow-y-auto pr-2">
               
               {/* Product selector Card */}
               <div className="bg-jugaad-black-900 border-2 border-white/10 rounded-[16px_48px_16px_48px] p-5">

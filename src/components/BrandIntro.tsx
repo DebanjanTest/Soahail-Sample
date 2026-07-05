@@ -486,7 +486,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
 
         {/* Silkscreen frame mockup */}
         <div className="max-w-2xl mx-auto">
-          <div className="bg-jugaad-black-900/80 border-3 border-jugaad-black-950 rounded-[24px_72px_24px_72px] overflow-hidden relative shadow-2xl p-6 md:p-8 backdrop-blur-md">
+          <div className="bg-jugaad-black-900/80 border-3 border-jugaad-black-950 rounded-[24px_72px_24px_72px] overflow-hidden relative shadow-2xl p-4 md:p-8 backdrop-blur-md">
             
             {/* Screen border styling */}
             <div className="absolute top-2 left-2 text-3xs font-mono text-white/30 uppercase tracking-widest z-20">
