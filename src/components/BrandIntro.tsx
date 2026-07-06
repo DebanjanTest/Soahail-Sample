@@ -209,7 +209,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
   };
 
   return (
-    <div className="space-y-24 pb-12 overflow-hidden relative">
+    <div className="space-y-24 pb-12 relative">
       {/* Self-contained CSS for marquee and other custom animations */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes custom-marquee {
@@ -283,7 +283,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </div>
 
       {/* 1. HERO SECTION WITH INTEGRATED SLANG PICKER */}
-      <section id="hero-intro" className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 h-screen overflow-hidden">
+      <section id="hero-intro" className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 min-h-screen">
         
         {/* Decorative Grid Mesh */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -468,7 +468,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
+      <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -627,7 +627,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section id="mockup-workstation" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 overflow-hidden h-screen">
+      <section id="mockup-workstation" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>
@@ -721,7 +721,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
           </div>
 
           {/* RIGHT: Live Workstation Controls */}
-          <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-6 space-y-6 max-h-[440px] overflow-y-auto pr-2">
+          <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-6 space-y-6 max-h-[440px] pr-2">
             
             <div className="space-y-6">
               

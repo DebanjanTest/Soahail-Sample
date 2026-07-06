@@ -152,9 +152,21 @@ const getPrintZoneStyle = (productId: string) => {
   return style;
 };
 
+// Native CSS scroll snapping will be used instead of JS override for smoother trackpad physics.
 export default function App() {
   // Navigation: 'home' | 'customize' | 'cart' | 'orders' | 'partner' | 'admin'
   const [activeTab, setActiveTab] = useState<'home' | 'customize' | 'cart' | 'orders' | 'partner' | 'admin'>('home');
+  
+  // Interactive Background Mouse Tracking
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      document.body.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.body.style.setProperty('--mouse-y', `${e.clientY}px`);
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
   const [lang, setLang] = useState<'EN' | 'HI'>('EN');
   const [activeSectionIdx, setActiveSectionIdx] = useState<number>(0);
   const [mobileDeckOpen, setMobileDeckOpen] = useState<boolean>(false);
@@ -745,23 +757,18 @@ export default function App() {
         {activeTab === 'home' && (
           <>
             {/* Desktop Vinyl CD Deck (Hidden on Mobile) */}
-            <div className="hidden md:flex fixed left-6 top-1/2 -translate-y-1/2 z-50 items-center gap-4 group pointer-events-none">
+            <div className="hidden md:block fixed -left-[300px] top-1/2 -translate-y-1/2 z-50 w-[600px] h-[600px] group pointer-events-none hover:translate-x-[50px] transition-transform duration-500">
               {/* Spinning Vinyl Record Disc */}
-              <div className="w-16 h-16 bg-black rounded-full border-2 border-desi-lime-500/30 flex items-center justify-center relative shadow-2xl pointer-events-auto animate-[spin_10s_linear_infinite] group-hover:animate-[spin_4s_linear_infinite] cursor-pointer">
-                {/* Grooves */}
-                <div className="absolute inset-2 border border-white/5 rounded-full"></div>
-                <div className="absolute inset-4 border border-white/10 rounded-full"></div>
-                <div className="absolute inset-6 border border-white/15 rounded-full"></div>
-                {/* Center Label (Mini CD) */}
-                <div className="w-6 h-6 bg-desi-lime-500 rounded-full flex items-center justify-center relative shadow">
-                  <div className="w-1.5 h-1.5 bg-jugaad-black-950 rounded-full"></div>
-                </div>
-              </div>
+              <img 
+                src="/vinyl 2.png"
+                alt="Vinyl Record"
+                className="absolute inset-0 w-full h-full rounded-full pointer-events-auto shadow-2xl animate-[spin_10s_linear_infinite] group-hover:animate-[spin_4s_linear_infinite] cursor-pointer object-cover"
+              />
 
-              {/* Cassette/CD Player Control Box (Slides open on hover or sits next to it) */}
-              <div className="bg-[#052016]/95 border-2 border-white/10 p-4 rounded-2xl shadow-2xl pointer-events-auto flex flex-col gap-2 w-44 transition-all duration-300">
-                <span className="text-[9px] font-mono text-desi-lime-500 uppercase tracking-widest font-black border-b border-white/10 pb-1.5 block">
-                  💿 PRESS DECK • SELECT TRACK
+              {/* Cassette/CD Player Control Box (Overlaid on Vinyl) */}
+              <div className="absolute right-12 top-1/2 -translate-y-1/2 bg-[#052016]/80 backdrop-blur-md border border-white/20 p-4 rounded-xl shadow-2xl pointer-events-auto flex flex-col gap-2 w-48 transition-all duration-300">
+                <span className="text-[10px] font-mono text-desi-lime-500 uppercase tracking-widest font-black border-b border-white/20 pb-2 mb-1 block text-center">
+                  💿 PRESS DECK
                 </span>
                 <div className="space-y-1">
                   {[
@@ -780,10 +787,10 @@ export default function App() {
                         }
                         setActiveSectionIdx(idx);
                       }}
-                      className={`w-full text-left py-1 px-2 rounded flex items-center gap-2 group/btn cursor-pointer transition text-2xs font-mono ${
+                      className={`w-full text-left py-1.5 px-3 rounded-lg flex items-center gap-2 group/btn cursor-pointer transition text-xs font-mono ${
                         activeSectionIdx === idx 
-                          ? 'bg-desi-lime-500/10 text-white border-l-2 border-desi-lime-500 pl-1.5' 
-                          : 'hover:bg-white/5 text-kulfi-white-300 hover:text-white'
+                          ? 'bg-desi-lime-500/20 text-white border-l-2 border-desi-lime-500' 
+                          : 'hover:bg-white/10 text-kulfi-white-300 hover:text-white'
                       }`}
                     >
                       <span className={`${activeSectionIdx === idx ? 'text-desi-lime-500' : 'text-desi-lime-500/60'} font-extrabold`}>{track.track}</span>
@@ -795,19 +802,12 @@ export default function App() {
             </div>
 
             {/* Mobile Spinning CD Button */}
-            <div 
+            <img 
+              src="/vinyl 2.png"
+              alt="Mobile Deck"
               onClick={() => setMobileDeckOpen(!mobileDeckOpen)}
-              className="fixed left-4 bottom-20 z-50 md:hidden w-12 h-12 rounded-full border border-desi-lime-500/40 bg-jugaad-black-950 flex items-center justify-center shadow-lg pointer-events-auto cursor-pointer animate-[spin_8s_linear_infinite]"
-            >
-              {/* Grooves */}
-              <div className="absolute inset-1 border border-white/5 rounded-full"></div>
-              <div className="absolute inset-2 border border-white/10 rounded-full"></div>
-              <div className="absolute inset-3 border border-white/15 rounded-full"></div>
-              {/* Center Label (Mini CD) */}
-              <div className="w-4 h-4 bg-desi-lime-500 rounded-full flex items-center justify-center relative shadow">
-                <div className="w-1 h-1 bg-jugaad-black-950 rounded-full"></div>
-              </div>
-            </div>
+              className="fixed left-4 bottom-20 z-50 md:hidden w-12 h-12 rounded-full pointer-events-auto shadow-lg cursor-pointer animate-[spin_8s_linear_infinite]"
+            />
 
             {/* Mobile Sliding Track Panel */}
             {mobileDeckOpen && (
@@ -865,7 +865,7 @@ export default function App() {
               />
 
               {/* Blank Merchandise Catalog Grid */}
-              <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 h-screen overflow-hidden">
+              <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
                 <MerchCatalog 
                   onCustomizeProduct={(product) => {
                     setSelectedProduct(product);
@@ -1065,7 +1065,7 @@ export default function App() {
             </div>
 
             {/* RIGHT CONTAINER: Control workspace */}
-            <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-4 md:p-6 space-y-4 lg:space-y-6 lg:max-h-[440px] overflow-y-auto pr-2">
+            <div className="lg:col-span-5 flex flex-col justify-between bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[16px_48px_16px_48px] p-4 md:p-6 space-y-4 lg:space-y-6 lg:max-h-[440px] pr-2">
               
               {/* Product selector Card */}
               <div className="bg-jugaad-black-900 border-2 border-white/10 rounded-[16px_48px_16px_48px] p-5">
@@ -1843,9 +1843,7 @@ export default function App() {
             {/* Vinyl CD Deck: Active Job Status Indicator */}
             <div className="mt-8 p-6 bg-gradient-to-r from-jugaad-black-950 to-jugaad-black-900 border border-white/10 rounded-lg flex items-center justify-between">
                <div className="flex items-center gap-4">
-                 <div className="w-12 h-12 rounded-full bg-white/5 border border-white/10 animate-spin-slow flex items-center justify-center">
-                    <div className="w-4 h-4 rounded-full bg-bhangra-pink-500"></div>
-                 </div>
+                 <img src="/vinyl 2.png" className="w-12 h-12 rounded-full animate-spin-slow shadow-lg" alt="Vinyl Status" />
                  <div>
                    <h4 className="font-heading font-bold text-white uppercase">Live Production Deck</h4>
                    <p className="text-2xs font-mono text-kulfi-white-400">Syncing real-time print head telemetry from fulfillment partners.</p>
@@ -1861,7 +1859,6 @@ export default function App() {
           </div>
         )}
 
-      </main>
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
       <footer id="studio-footer" className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section h-screen pt-24 pb-8' : 'py-8'}`}>
@@ -2196,6 +2193,7 @@ export default function App() {
         </div>
       )}
 
+      </main>
     </div>
   );
 }

@@ -270,10 +270,10 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
   ];
 
   return (
-    <section className="space-y-12">
-      {/* Modern Catalog Header with filter control and search */}
-      <div className="flex flex-col gap-6 md:gap-8 border-b-2 border-white/10 pb-6">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
+    <section className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full h-full lg:max-h-[85vh] pt-4">
+      {/* LEFT SIDE: Heading, Search, Filter */}
+      <div className="lg:w-[35%] flex flex-col gap-6 md:gap-8 lg:border-r-2 lg:border-white/10 lg:pr-8 shrink-0">
+        <div className="flex flex-col gap-4">
           <div>
             <h2 className="text-2xl md:text-4xl font-black uppercase tracking-tight text-white flex items-center gap-2">
               <Sparkles className="text-bhangra-pink-500 animate-pulse" size={28} />
@@ -283,15 +283,15 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
               Select premium bases, inspect transparent pricing, and design in the Custom Lab.
             </p>
           </div>
-          <span className="self-start md:self-auto text-xs font-mono bg-jugaad-black-900 text-desi-lime-500 px-3.5 py-1.5 rounded-full border border-desi-lime-500/30 uppercase font-semibold tracking-wider">
+          <span className="self-start text-xs font-mono bg-jugaad-black-900 text-desi-lime-500 px-3.5 py-1.5 rounded-full border border-desi-lime-500/30 uppercase font-semibold tracking-wider">
             ⚡ Premium Design Selection
           </span>
         </div>
 
         {/* Filters and Search Row */}
-        <div className="flex flex-col lg:flex-row gap-4 justify-between items-stretch lg:items-center">
+        <div className="flex flex-col gap-6">
           {/* Category Tabs */}
-          <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0 scrollbar-none snap-x">
+          <div className="flex flex-row lg:flex-col gap-2 overflow-x-auto lg:overflow-visible pb-2 lg:pb-0 scrollbar-none snap-x">
             {categories.map((cat) => {
               const isActive = selectedCategory === cat.name;
               return (
@@ -316,7 +316,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
           </div>
 
           {/* Search and Sort controls */}
-          <div className="flex flex-col sm:flex-row gap-3 items-stretch sm:items-center">
+          <div className="flex flex-col gap-4 pt-4 border-t-2 border-white/10">
             {/* Search Input */}
             <div className="relative flex-grow sm:w-64">
               <span className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-kulfi-white-400">
@@ -351,20 +351,20 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
         </div>
       </div>
 
-      {/* Grid Layout of Cards - Mobile First Responsive with Zero Layout Shift */}
-      {filteredProducts.length === 0 ? (
-        <div className="bg-jugaad-black-900 border-2 border-white/10 rounded-neo-card p-12 text-center max-w-xl mx-auto space-y-4">
-          <p className="text-kulfi-white-400 font-sans text-base">No items found matching your filters.</p>
-          <button 
-            onClick={() => { setSelectedCategory('All Swag'); setSearchQuery(''); }}
-            className="px-4 py-2 rounded bg-white/10 hover:bg-white/20 text-white font-heading text-xs uppercase"
-          >
-            Clear Filters
-          </button>
-        </div>
-      ) : (
-        <div className="max-h-[50vh] md:max-h-[55vh] overflow-y-auto pr-2 pb-12 scrollbar-thin text-left">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12 pt-4">
+      {/* RIGHT SIDE: Sub-Scroll Menu for Items */}
+      <div className="lg:w-[65%] h-full lg:max-h-[85vh] overflow-y-auto scrollbar-thin pr-4 pb-24 overscroll-contain">
+        {filteredProducts.length === 0 ? (
+          <div className="bg-jugaad-black-900 border-2 border-white/10 rounded-neo-card p-12 text-center max-w-xl mx-auto space-y-4">
+            <p className="text-kulfi-white-400 font-sans text-base">No items found matching your filters.</p>
+            <button 
+              onClick={() => { setSelectedCategory('All Swag'); setSearchQuery(''); }}
+              className="px-4 py-2 rounded bg-white/10 hover:bg-white/20 text-white font-heading text-xs uppercase"
+            >
+              Clear Filters
+            </button>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
           {filteredProducts.map((product, idx) => {
             const isHovered = hoveredCardId === product.id;
             const isWishlisted = wishlist.includes(product.id);
@@ -614,8 +614,8 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
             );
           })}
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </section>
   );
 }

@@ -203,22 +203,30 @@ html {
 }
 
 body, #root, .root-wrapper {
-  height: 100%;
+  min-height: 100vh;
 }
 
 /* Custom Base Layer CSS */
 @layer base {
   body {
-    background-image: url('/luxury_green_backdrop.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: scroll;
+    background: radial-gradient(circle 800px at center, #0b2e17 0%, #020a04 100%);
+    background-color: #020a04;
+    background-attachment: fixed;
     color: var(--color-kulfi-white-100);
     font-family: var(--font-sans);
-    overflow-x: hidden;
-    height: 100%;
+    min-height: 100vh;
     position: relative;
+  }
+
+  /* Responsive Mouse Shuttle Glow */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9999;
+    background: radial-gradient(circle 120px at var(--mouse-x, 50vw) var(--mouse-y, 50vh), rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.15) 40%, transparent 60%);
+    mix-blend-mode: color-dodge;
   }
 
   body::before {
@@ -253,5 +261,6 @@ body, #root, .root-wrapper {
 .snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
 }
