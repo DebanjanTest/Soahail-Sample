@@ -197,6 +197,7 @@
 }
 
 html {
+  font-size: 80%; /* Globally scale down rem units to mimic 80% zoom */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   scroll-padding-top: 4rem; /* offset for h-16 navbar */
