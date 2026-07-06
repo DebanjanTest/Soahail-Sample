@@ -197,7 +197,7 @@
 }
 
 html {
-  font-size: 80%; /* Globally scale down rem units to mimic 80% zoom */
+  font-size: 80%; /* ponytail: globally scale down all rem values instead of css transform matrix to mimic 80% browser zoom */
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   scroll-padding-top: 4rem; /* offset for h-16 navbar */
