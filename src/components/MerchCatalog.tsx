@@ -352,7 +352,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
       </div>
 
       {/* RIGHT SIDE: Sub-Scroll Menu for Items */}
-      <div className="lg:w-[65%] h-full lg:max-h-[85vh] overflow-y-auto scrollbar-thin pr-4 pb-24 overscroll-contain">
+      <div className="lg:w-[65%] h-full lg:max-h-[85vh] overflow-y-auto scrollbar-thin pr-4 pb-24">
         {filteredProducts.length === 0 ? (
           <div className="bg-jugaad-black-900 border-2 border-white/10 rounded-neo-card p-12 text-center max-w-xl mx-auto space-y-4">
             <p className="text-kulfi-white-400 font-sans text-base">No items found matching your filters.</p>
