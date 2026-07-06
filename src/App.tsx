@@ -291,96 +291,30 @@ export default function App() {
   }, [paymentModalOpen, upiTimer]);
 
   // Scroll Lock & Section Transition Effect
+  // Native Scroll Observer for Section Highlights
   useEffect(() => {
     if (activeTab !== 'home') return;
 
-    let isScrolling = false;
     const sectionsList = ['hero-intro', 'print-simulator', 'mockup-workstation', 'swag-catalog', 'studio-footer'];
 
-    const scrollToSection = (index: number) => {
-      const targetId = sectionsList[index];
-      const el = document.getElementById(targetId);
-      if (el) {
-        setActiveSectionIdx(index);
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      }
-    };
-
-    const handleWheel = (e: WheelEvent) => {
-      e.preventDefault();
-      if (isScrolling) return;
-
-      const direction = e.deltaY > 0 ? 1 : -1;
-      const nextIdx = activeSectionIdx + direction;
-      if (nextIdx >= 0 && nextIdx < sectionsList.length) {
-        isScrolling = true;
-        scrollToSection(nextIdx);
-        setTimeout(() => {
-          isScrolling = false;
-        }, 1000);
-      }
-    };
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (['ArrowDown', 'PageDown'].includes(e.key)) {
-        e.preventDefault();
-        if (isScrolling) return;
-        const nextIdx = activeSectionIdx + 1;
-        if (nextIdx < sectionsList.length) {
-          isScrolling = true;
-          scrollToSection(nextIdx);
-          setTimeout(() => {
-            isScrolling = false;
-          }, 1000);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const idx = sectionsList.indexOf(entry.target.id);
+          if (idx !== -1) {
+            setActiveSectionIdx(idx);
+          }
         }
-      } else if (['ArrowUp', 'PageUp'].includes(e.key)) {
-        e.preventDefault();
-        if (isScrolling) return;
-        const nextIdx = activeSectionIdx - 1;
-        if (nextIdx >= 0) {
-          isScrolling = true;
-          scrollToSection(nextIdx);
-          setTimeout(() => {
-            isScrolling = false;
-          }, 1000);
-        }
-      }
-    };
+      });
+    }, { threshold: 0.5 });
 
-    let touchStartY = 0;
-    const handleTouchStart = (e: TouchEvent) => {
-      touchStartY = e.touches[0].clientY;
-    };
+    sectionsList.forEach(id => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
-    const handleTouchEnd = (e: TouchEvent) => {
-      if (isScrolling) return;
-      const touchEndY = e.changedTouches[0].clientY;
-      const deltaY = touchStartY - touchEndY;
-      if (Math.abs(deltaY) > 50) {
-        const direction = deltaY > 0 ? 1 : -1;
-        const nextIdx = activeSectionIdx + direction;
-        if (nextIdx >= 0 && nextIdx < sectionsList.length) {
-          isScrolling = true;
-          scrollToSection(nextIdx);
-          setTimeout(() => {
-            isScrolling = false;
-          }, 1000);
-        }
-      }
-    };
-
-    window.addEventListener('wheel', handleWheel, { passive: false });
-    window.addEventListener('keydown', handleKeyDown, { passive: false });
-    window.addEventListener('touchstart', handleTouchStart, { passive: true });
-    window.addEventListener('touchend', handleTouchEnd, { passive: true });
-
-    return () => {
-      window.removeEventListener('wheel', handleWheel);
-      window.removeEventListener('keydown', handleKeyDown);
-      window.removeEventListener('touchstart', handleTouchStart);
-      window.removeEventListener('touchend', handleTouchEnd);
-    };
-  }, [activeTab, activeSectionIdx]);
+    return () => observer.disconnect();
+  }, [activeTab]);
 
   const triggerToast = (msg: string) => {
     setToastMessage(msg);

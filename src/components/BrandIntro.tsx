@@ -209,7 +209,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
   };
 
   return (
-    <div className="space-y-24 pb-12 relative">
+    <div className="relative">
       {/* Self-contained CSS for marquee and other custom animations */}
       <style dangerouslySetInnerHTML={{ __html: `
         @keyframes custom-marquee {
