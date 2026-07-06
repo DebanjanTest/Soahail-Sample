@@ -799,7 +799,7 @@ export default function App() {
               />
 
               {/* Blank Merchandise Catalog Grid */}
-              <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
+              <section id="swag-catalog" className="snap-section pt-20 pb-8 flex flex-col justify-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 ">
                 <MerchCatalog 
                   onCustomizeProduct={(product) => {
                     setSelectedProduct(product);
@@ -1795,7 +1795,7 @@ export default function App() {
 
 
       {/* FOOTER: Mobile bottom navigation bar + Desktop directory */}
-      <footer id="studio-footer" className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section h-screen pt-24 pb-8' : 'py-8'}`}>
+      <footer id="studio-footer" className={`bg-jugaad-black-900 border-t border-white/10 relative flex flex-col justify-center overflow-hidden ${activeTab === 'home' ? 'snap-section pt-24 pb-8' : 'py-8'}`}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             <div className="space-y-3">

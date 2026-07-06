@@ -199,6 +199,7 @@
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+  scroll-padding-top: 4rem; /* offset for h-16 navbar */
 }
 
 body, #root, .root-wrapper {
@@ -260,6 +261,6 @@ body, #root, .root-wrapper {
 .snap-section {
   scroll-snap-align: start;
   scroll-snap-stop: always;
-  height: 100vh;
-  overflow: hidden;
+  min-height: calc(100vh - 4rem);
+  position: relative;
 }

@@ -283,7 +283,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </div>
 
       {/* 1. HERO SECTION WITH INTEGRATED SLANG PICKER */}
-      <section id="hero-intro" className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 min-h-screen">
+      <section id="hero-intro" className="relative snap-section pt-24 pb-12 flex flex-col justify-center items-center px-4 border-b-4 border-jugaad-black-950 ">
         
         {/* Decorative Grid Mesh */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff05_1px,transparent_1px),linear-gradient(to_bottom,#ffffff05_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none"></div>
@@ -468,7 +468,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
-      <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
+      <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 ">
         
         <div className="text-center max-w-3xl mx-auto space-y-4">
           <span className="px-3 py-1 rounded bg-vibe-purple-500/10 text-vibe-purple-500 border border-vibe-purple-500/20 font-mono text-xs uppercase tracking-widest">
@@ -627,7 +627,7 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
       </section>
 
       {/* 4. INTERACTIVE CARD REEL & LIVE APPAREL PREVIEW */}
-      <section id="mockup-workstation" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 min-h-screen">
+      <section id="mockup-workstation" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 ">
         
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b-4 border-jugaad-black-950 pb-6 gap-4">
           <div>
