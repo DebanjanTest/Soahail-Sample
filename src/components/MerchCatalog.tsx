@@ -270,7 +270,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
   ];
 
   return (
-    <section className="flex flex-col lg:flex-row gap-8 lg:gap-12 w-full h-full lg:max-h-[85vh] pt-4">
+    <section className="flex flex-col lg:flex-row gap-6 lg:gap-12 w-full h-full lg:max-h-[85vh] pt-2 md:pt-4">
       {/* LEFT SIDE: Heading, Search, Filter */}
       <div className="lg:w-[35%] flex flex-col gap-6 md:gap-8 lg:border-r-2 lg:border-white/10 lg:pr-8 shrink-0">
         <div className="flex flex-col gap-4">
@@ -364,7 +364,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-6 gap-y-12">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-6 md:gap-y-12">
           {filteredProducts.map((product, idx) => {
             const isHovered = hoveredCardId === product.id;
             const isWishlisted = wishlist.includes(product.id);
@@ -379,7 +379,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
                   setHoveredCardId(null);
                   setPricingBreakdownOpen(null);
                 }}
-                className={`bg-jugaad-black-900/60 border border-white/5 p-5 hover:border-desi-lime-500/30 hover:shadow-neo-flat hover:shadow-bhangra-pink-500 transition-all duration-300 ease-[var(--ease-out-quint)] hover:scale-[1.04] active:scale-[0.96] flex flex-col justify-between relative group ${
+                className={`bg-jugaad-black-900/60 border border-white/5 p-3 md:p-5 hover:border-desi-lime-500/30 hover:shadow-neo-flat hover:shadow-bhangra-pink-500 transition-all duration-300 ease-[var(--ease-out-quint)] hover:scale-[1.04] active:scale-[0.96] flex flex-col justify-between relative group ${
                   idx % 2 === 1 ? 'lg:translate-y-8 rounded-[32px_12px_32px_12px]' : 'rounded-[12px_32px_12px_32px]'
                 }`}
               >

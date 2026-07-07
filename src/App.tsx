@@ -18,7 +18,9 @@ import {
   ShieldAlert, 
   Printer,
   ChevronRight,
-  Clock
+  Clock,
+  Home,
+  ShoppingCart
 } from 'lucide-react';
 import BrandIntro from './components/BrandIntro';
 import MerchCatalog from './components/MerchCatalog';
@@ -589,7 +591,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-transparent text-kulfi-white-100 flex flex-col font-sans relative selection:bg-bhangra-pink-500 selection:text-white root-wrapper">
+    <div className="min-h-screen bg-transparent text-kulfi-white-100 flex flex-col font-sans relative selection:bg-bhangra-pink-500 selection:text-white root-wrapper pb-24 md:pb-0">
       {/* Toast Notification */}
       {toastMessage && (
         <div className="fixed top-20 right-4 md:right-8 z-50 bg-jugaad-black-900 border-2 border-bhangra-pink-500 rounded-neo-card p-4 shadow-glow-pink max-w-sm animate-bounce flex items-center gap-3">
@@ -820,7 +822,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* LEFT CONTAINER: Merch Interactive Mockup Canvas */}
-            <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-4 md:p-6 flex flex-col justify-between items-center relative overflow-hidden h-[45vh] lg:h-auto max-h-[440px] bg-radial from-jugaad-black-900 to-jugaad-black-950">
+            <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-4 md:p-6 flex flex-col justify-between items-center relative overflow-hidden h-[50vh] md:h-[45vh] lg:h-auto max-h-[500px] md:max-h-[440px] bg-radial from-jugaad-black-900 to-jugaad-black-950 sticky top-24 md:static z-40">
               <div className="w-full flex justify-between items-center mb-6">
                 <div>
                   <h3 className="text-sm font-mono text-desi-lime-500 uppercase tracking-widest">Merchandise Workspace</h3>
@@ -2128,6 +2130,31 @@ export default function App() {
       )}
 
       </main>
+
+      {/* Mobile Bottom Navigation Bar */}
+      <div className="md:hidden fixed bottom-4 left-4 right-4 z-50 glass-morphic border border-white/10 rounded-2xl p-2 flex justify-around items-center shadow-2xl backdrop-blur-xl">
+        <button 
+          onClick={() => setActiveTab('home')}
+          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition ${activeTab === 'home' ? 'text-bhangra-pink-500 bg-white/5' : 'text-kulfi-white-400 hover:text-white'}`}
+        >
+          <Home size={20} />
+          <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Home</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab('customize')}
+          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition ${activeTab === 'customize' ? 'text-desi-lime-500 bg-white/5' : 'text-kulfi-white-400 hover:text-white'}`}
+        >
+          <Sparkles size={20} />
+          <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Custom</span>
+        </button>
+        <button 
+          onClick={() => setActiveTab('orders')}
+          className={`flex flex-col items-center gap-1 p-2 rounded-xl transition ${activeTab === 'orders' ? 'text-masala-orange-500 bg-white/5' : 'text-kulfi-white-400 hover:text-white'}`}
+        >
+          <ShoppingCart size={20} />
+          <span className="text-[10px] font-mono uppercase tracking-wider font-bold">Cart</span>
+        </button>
+      </div>
     </div>
   );
 }

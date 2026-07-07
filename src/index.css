@@ -198,9 +198,14 @@
 
 html {
   font-size: 80%; /* ponytail: globally scale down all rem values instead of css transform matrix to mimic 80% browser zoom */
-  scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
   scroll-padding-top: 4rem; /* offset for h-16 navbar */
+}
+
+@media (min-width: 768px) {
+  html {
+    scroll-snap-type: y mandatory;
+  }
 }
 
 body, #root, .root-wrapper {
