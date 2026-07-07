@@ -202,6 +202,7 @@ html {
   scroll-padding-top: 4rem; /* offset for h-16 navbar */
 }
 
+/* ponytail: use standard CSS media query to disable scroll snap on mobile natively instead of fighting JS event handlers */
 @media (min-width: 768px) {
   html {
     scroll-snap-type: y mandatory;

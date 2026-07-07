@@ -364,6 +364,7 @@ export default function MerchCatalog({ onCustomizeProduct, onAddToCart }: MerchC
             </button>
           </div>
         ) : (
+          /* ponytail: switch from 1 col to 2 cols on mobile directly in tailwind instead of JS window resize events */
           <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-x-6 md:gap-y-12">
           {filteredProducts.map((product, idx) => {
             const isHovered = hoveredCardId === product.id;

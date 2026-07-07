@@ -822,6 +822,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
             {/* LEFT CONTAINER: Merch Interactive Mockup Canvas */}
+            {/* ponytail: CSS sticky on mobile avoids complex scroll-spy JS logic to pin the 3D model */}
             <div className="lg:col-span-7 bg-jugaad-black-900 border-3 border-jugaad-black-950 rounded-[32px_8px_32px_8px] p-4 md:p-6 flex flex-col justify-between items-center relative overflow-hidden h-[50vh] md:h-[45vh] lg:h-auto max-h-[500px] md:max-h-[440px] bg-radial from-jugaad-black-900 to-jugaad-black-950 sticky top-24 md:static z-40">
               <div className="w-full flex justify-between items-center mb-6">
                 <div>
@@ -2132,6 +2133,7 @@ export default function App() {
       </main>
 
       {/* Mobile Bottom Navigation Bar */}
+      {/* ponytail: hidden on desktop, simple flex glass bar for mobile thumbs without importing mobile libraries */}
       <div className="md:hidden fixed bottom-4 left-4 right-4 z-50 glass-morphic border border-white/10 rounded-2xl p-2 flex justify-around items-center shadow-2xl backdrop-blur-xl">
         <button 
           onClick={() => setActiveTab('home')}
