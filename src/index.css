@@ -271,3 +271,93 @@ body, #root, .root-wrapper {
   min-height: calc(100vh - 4rem);
   position: relative;
 }
+
+/* 3D Fold Accordion screen styles */
+.screen-3d {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.wrapper-3d {
+  position: relative;
+  perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.fold {
+  overflow: hidden;
+  width: 55vw;
+  max-width: 680px;
+  height: 16.66vh; /* Each fold is 1/3 of the 50vh height */
+  position: relative;
+  transition: transform 1s cubic-bezier(0.25, 1, 0.5, 1);
+  transform-style: preserve-3d;
+  box-sizing: border-box;
+}
+
+.fold-top {
+  position: absolute;
+  transform-origin: bottom center;
+  left: 0;
+  right: 0;
+  bottom: 100%;
+  transform: rotateX(-50deg);
+}
+
+.fold-bottom {
+  position: absolute;
+  transform-origin: top center;
+  right: 0;
+  left: 0;
+  top: 100%;
+  transform: rotateX(50deg);
+}
+
+/* Center fold is flat, doesn't rotate */
+.fold-center {
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(5, 32, 22, 0.6);
+  backdrop-filter: blur(12px);
+}
+
+.fold-align {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Hover rollover triggers unfold */
+.wrapper-3d:hover .fold-top {
+  transform: rotateX(0deg);
+}
+
+.wrapper-3d:hover .fold-bottom {
+  transform: rotateX(0deg);
+}
+
+/* Vertical Scrolling Marquee */
+.ticker-track {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+  animation: marquee-vertical-expo 24s linear infinite;
+  box-sizing: border-box;
+}
+
+.ticker-card {
+  width: 100%;
+  height: 16.66vh;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: inset 0 0 20px rgba(0,0,0,0.8);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+@keyframes marquee-vertical-expo {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}

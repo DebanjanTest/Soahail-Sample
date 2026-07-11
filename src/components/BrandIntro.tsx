@@ -8,6 +8,7 @@ import {
   Printer
 } from 'lucide-react';
 
+import ExpoSection from './ExpoSection';
 interface BrandIntroProps {
   onCustomizeClick?: (productType: string, initialText?: string) => void;
   lang?: 'EN' | 'HI';
@@ -466,6 +467,9 @@ export default function BrandIntro({ onCustomizeClick, lang = 'EN' }: BrandIntro
         </div>
 
       </section>
+
+      {/* 2. WORLD CUP 2026 ROLLOVER EXPO SHOWROOM */}
+      <ExpoSection />
 
       {/* 3. CORE IDENTITY: SQUEEGEE SILKSCREEN PRINT SIMULATOR */}
       <section id="print-simulator" className="snap-section pt-20 pb-8 flex flex-col justify-center items-center w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-6 ">

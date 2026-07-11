@@ -297,7 +297,7 @@ export default function App() {
   useEffect(() => {
     if (activeTab !== 'home') return;
 
-    const sectionsList = ['hero-intro', 'print-simulator', 'mockup-workstation', 'swag-catalog', 'studio-footer'];
+    const sectionsList = ['hero-intro', 'section-expo', 'print-simulator', 'mockup-workstation', 'swag-catalog', 'studio-footer'];
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
@@ -709,10 +709,11 @@ export default function App() {
                 <div className="space-y-1">
                   {[
                     { id: 'hero-intro', track: '01', name: 'Intro Swag' },
-                    { id: 'print-simulator', track: '02', name: 'Squeegee Lab' },
-                    { id: 'mockup-workstation', track: '03', name: 'Ink Simulator' },
-                    { id: 'swag-catalog', track: '04', name: 'Swag Catalog' },
-                    { id: 'studio-footer', track: '05', name: 'Studio Footer' }
+                    { id: 'section-expo', track: '02', name: 'WC 2026 Expo' },
+                    { id: 'print-simulator', track: '03', name: 'Squeegee Lab' },
+                    { id: 'mockup-workstation', track: '04', name: 'Ink Simulator' },
+                    { id: 'swag-catalog', track: '05', name: 'Swag Catalog' },
+                    { id: 'studio-footer', track: '06', name: 'Studio Footer' }
                   ].map((track, idx) => (
                     <button
                       key={track.id}
@@ -754,10 +755,11 @@ export default function App() {
                 <div className="flex flex-col gap-1">
                   {[
                     { id: 'hero-intro', track: '01', name: 'Intro Swag' },
-                    { id: 'print-simulator', track: '02', name: 'Squeegee Lab' },
-                    { id: 'mockup-workstation', track: '03', name: 'Ink Simulator' },
-                    { id: 'swag-catalog', track: '04', name: 'Swag Catalog' },
-                    { id: 'studio-footer', track: '05', name: 'Studio Footer' }
+                    { id: 'section-expo', track: '02', name: 'WC 2026 Expo' },
+                    { id: 'print-simulator', track: '03', name: 'Squeegee Lab' },
+                    { id: 'mockup-workstation', track: '04', name: 'Ink Simulator' },
+                    { id: 'swag-catalog', track: '05', name: 'Swag Catalog' },
+                    { id: 'studio-footer', track: '06', name: 'Studio Footer' }
                   ].map((track, idx) => (
                     <button
                       key={track.id}
